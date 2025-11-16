@@ -73,7 +73,7 @@ if (isset($_POST['change_password'])) {
     $newPassword = $_POST['new_password'];
     $confirmPassword = $_POST['confirm_password'];
     
-    
+    // password validations
     if (empty($currentPassword) || empty($newPassword) || empty($confirmPassword)) {
         $message = "All password fields are required.";
         $messageType = "danger";
