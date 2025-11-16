@@ -5,7 +5,7 @@ checkUserRole('librarian');
 
 $message = '';
 $messageType = '';
-
+// user information
 $userId = $_SESSION['user_id'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $userId);
