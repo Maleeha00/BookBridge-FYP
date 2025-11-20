@@ -12,14 +12,23 @@ $returned = mysqli_fetch_assoc($q2)['total'];
 $q3 = mysqli_query($conn, "SELECT COUNT(*) AS total FROM issued_books WHERE status='overdue'");
 $overdue = mysqli_fetch_assoc($q3)['total'];
 
+// Total Books in Library
+$q4 = mysqli_query($conn, "SELECT COUNT(*) AS total FROM books");
+$totalBooks = mysqli_fetch_assoc($q4)['total'];
+
+$q5 = mysqli_query($conn, "
+    SELECT COUNT(DISTINCT user_id) AS total 
+    FROM issued_books
+");
+$activeUsers = mysqli_fetch_assoc($q5)['total'];
 
 $months = [];
 $issuedCounts = [];
 $returnCounts = [];
 
-$q4 = mysqli_query($conn, "
+$q6 = mysqli_query($conn, "
     SELECT 
-        MONTHNAME(issue_date) AS month,
+        DATE_FORMAT(issue_date, '%b') AS month,
         SUM(status='issued') AS iCount,
         SUM(status='returned') AS rCount
     FROM issued_books
@@ -27,7 +36,7 @@ $q4 = mysqli_query($conn, "
     ORDER BY MONTH(issue_date)
 ");
 
-while ($row = mysqli_fetch_assoc($q4)) {
+while ($row = mysqli_fetch_assoc($q6)) {
     $months[] = $row['month'];
     $issuedCounts[] = $row['iCount'];
     $returnCounts[] = $row['rCount'];
@@ -36,7 +45,7 @@ while ($row = mysqli_fetch_assoc($q4)) {
 $bookNames = [];
 $issueNumbers = [];
 
-$q5 = mysqli_query($conn, "
+$q7 = mysqli_query($conn, "
     SELECT b.book_name, COUNT(i.book_id) AS timesIssued
     FROM issued_books i
     JOIN books b ON i.book_id = b.id
@@ -45,10 +54,29 @@ $q5 = mysqli_query($conn, "
     LIMIT 5
 ");
 
-while ($row = mysqli_fetch_assoc($q5)) {
+while ($row = mysqli_fetch_assoc($q7)) {
     $bookNames[] = $row['book_name'];
     $issueNumbers[] = $row['timesIssued'];
 }
+
+$returnBookNames = [];
+$returnBookCounts = [];
+
+$q8 = mysqli_query($conn, "
+    SELECT b.book_name, COUNT(i.book_id) AS timesReturned
+    FROM issued_books i
+    JOIN books b ON i.book_id = b.id
+    WHERE i.status='returned'
+    GROUP BY i.book_id
+    ORDER BY timesReturned DESC
+    LIMIT 5
+");
+
+while ($row = mysqli_fetch_assoc($q8)) {
+    $returnBookNames[] = $row['book_name'];
+    $returnBookCounts[] = $row['timesReturned'];
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,11 +94,15 @@ while ($row = mysqli_fetch_assoc($q5)) {
         h1 { margin-bottom: 10px; }
 
         /* Dashboard Cards */
-        .cards { display: flex; gap: 20px; margin-top: 20px; }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
         .card {
             background: white;
             padding: 25px;
-            width: 260px;
             border-radius: 15px;
             box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
         }
@@ -80,7 +112,6 @@ while ($row = mysqli_fetch_assoc($q5)) {
             color: #2b4eff;
         }
 
-       
         .chart-box {
             margin-top: 40px;
             background: white;
@@ -103,7 +134,7 @@ while ($row = mysqli_fetch_assoc($q5)) {
 
 <div class="container">
     <h1>Circulation Report</h1>
-    <p>Dashboard overview of issue/return activity and most issued books.</p>
+    <p>Dashboard overview of issue/return activity, active users, and book trends.</p>
 
     <div class="cards">
         <div class="card">
@@ -120,27 +151,40 @@ while ($row = mysqli_fetch_assoc($q5)) {
             <h3>Overdue Books</h3>
             <div class="number"><?= $overdue ?></div>
         </div>
+
+        <div class="card">
+            <h3>Total Books</h3>
+            <div class="number"><?= $totalBooks ?></div>
+        </div>
+
+        <div class="card">
+            <h3>Active Users</h3>
+            <div class="number"><?= $activeUsers ?></div>
+        </div>
     </div>
 
-    <div class="charts-grid">
 
-        
+    <div class="charts-grid">
         <div class="chart-box">
             <h2>Issued vs Returned (Month-wise)</h2>
             <canvas id="lineChart"></canvas>
         </div>
 
-        
         <div class="chart-box">
             <h2>Top 5 Most Issued Books</h2>
             <canvas id="pieChart"></canvas>
         </div>
-
     </div>
+
+    <div class="chart-box">
+        <h2>Top Returned Books</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+
 </div>
 
 <script>
-// GRAPH 1: LINE CHART (Issued vs Returned)
+// ================== LINE CHART =================
 new Chart(document.getElementById('lineChart'), {
     type: 'line',
     data: {
@@ -149,23 +193,37 @@ new Chart(document.getElementById('lineChart'), {
             {
                 label: 'Issued',
                 data: <?= json_encode($issuedCounts) ?>,
-                borderWidth: 3
+                borderWidth: 3,
             },
             {
                 label: 'Returned',
                 data: <?= json_encode($returnCounts) ?>,
-                borderWidth: 3
+                borderWidth: 3,
             }
         ]
     }
 });
 
+
 new Chart(document.getElementById('pieChart'), {
-    type: 'pie',
+    type: 'doughnut',
     data: {
         labels: <?= json_encode($bookNames) ?>,
         datasets: [{
             data: <?= json_encode($issueNumbers) ?> 
+        }]
+    }
+});
+
+// ================== BAR CHART (TOP RETURNED BOOKS) =================
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: <?= json_encode($returnBookNames) ?>,
+        datasets: [{
+            label: 'Times Returned',
+            data: <?= json_encode($returnBookCounts) ?>,
+            borderWidth: 2
         }]
     }
 });
