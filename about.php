@@ -172,7 +172,7 @@
   <nav class="auth-navbar">
     <div class="container">
       <a href="login.php" class="auth-logo">
-        <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
+        <img src="/uploads/assests/new logo.jpg" alt="Library Logo" class="logo-image">
         <span class="navbar-title">BookBridge</span>
       </a>
       <div class="auth-nav-links">
