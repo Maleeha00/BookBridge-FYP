@@ -13,7 +13,7 @@ session_start();
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
-  <link rel="icon" type="image/png" href="uploads/assests/book.png">
+  <link rel="icon" type="image/png" href="uploads/assests/book.jpg">
 
   <style>
     .carousel-item img {
@@ -206,7 +206,7 @@ session_start();
   <nav class="auth-navbar">
     <div class="container">
       <a href="login.php" class="auth-logo">
-        <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
+        <img src="/uploads/assests/book.jpg" alt="Library Logo" class="logo-image">
         <span class="navbar-title">BookBridge</span>
       </a>
       <div class="auth-nav-links">

@@ -56,7 +56,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Catalog </title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" href="../uploads/assests/book.png">
+    <link rel="icon" type="image/png" href="../uploads/assests/book.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -160,7 +160,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
     <nav class="catalog-navbar">
         <div class="navbar-container">
             <a href="#" class="navbar-brand">
-                <img src="../uploads/assests/book.png" alt="Library Logo">
+                <img src="../uploads/assests/book.jpg" alt="Library Logo">
                 <span class="navbar-book_name">BookBridge</span>
             </a>
             <div class="navbar-actions">
