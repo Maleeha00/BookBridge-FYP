@@ -38,7 +38,7 @@ if (isset($_GET['token'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Verification</title>
-     <link rel="icon" type="image/png" href="uploads/assests/book.jpg">
+     <link rel="icon" type="image/png" href="uploads/assests/book.png">
     <style>
         body {
             margin: 0;
