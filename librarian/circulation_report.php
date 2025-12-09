@@ -133,7 +133,7 @@ while ($row = mysqli_fetch_assoc($q8)) {
 <body>
 
 <div class="container">
-    <h1>Circulation Report</h1>
+    <!--<h1>Circulation Report</h1>
     <p>Dashboard overview of issue/return activity, active users, and book trends.</p>
 
     <div class="cards">
@@ -161,7 +161,7 @@ while ($row = mysqli_fetch_assoc($q8)) {
             <h3>Active Users</h3>
             <div class="number"><?= $activeUsers ?></div>
         </div>
-    </div>
+    </div>-->
 
 
     <div class="charts-grid">
