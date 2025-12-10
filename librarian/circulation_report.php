@@ -228,6 +228,19 @@ new Chart(document.getElementById('barChart'), {
     }
 });
 </script>
+<a href="circulation_details.php">
+    <button style="
+        padding: 10px 18px;
+        background: #2b4eff;
+        color: white;
+        border: none;
+        margin-right: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+    ">
+        View Details
+    </button>
+</a>
 
 </body>
 </html>
