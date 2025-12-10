@@ -257,6 +257,133 @@ session_start();
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+ <!--tryyyyyy-->
+ <style>
+.ebook-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.ebook-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s;
+    padding-bottom: 15px;
+}
+
+.ebook-card:hover {
+    transform: translateY(-5px);
+}
+
+.ebook-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.ebook-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+    color: #333;
+    min-height: 45px;
+}
+
+.ebook-author {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.ebook-btn {
+    background: #007bff;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+.ebook-btn:hover {
+    background: #0056b3;
+}
+</style>
+
+<?php
+include 'includes/config.php';
+$show = $_GET['show'] ?? '';
+
+if ($show !== 'all') {
+    $sql = "SELECT * FROM ebooks ORDER BY created_at DESC LIMIT 10";
+} else {
+    $sql = "SELECT * FROM ebooks ORDER BY created_at DESC";
+}
+
+$result = mysqli_query($conn, $sql);
+?>
+<h1 style="
+    text-align:center;
+    font-size: 32px;
+    font-weight: 800;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #2a2a2a;
+">
+    EBOOKS
+</h1>
+
+<div class="ebook-container">
+<?php while ($row = mysqli_fetch_assoc($result)): ?>
+    <div class="ebook-card">
+        <a href="book_details.php?id=<?php echo $row['id']; ?>">
+    <img src="<?php echo $row['cover_image'] ? $row['cover_image'] : 'default-cover.jpg'; ?>" alt="Cover">
+</a>
+        <div class="ebook-title"><?php echo $row['title']; ?></div>
+        <div class="ebook-author">By <?php echo $row['author']; ?></div>
+
+        <a href="<?php echo $row['file_path']; ?>" class="ebook-btn" target="_blank">
+            View / Download
+        </a>
+    </div>
+<?php endwhile; ?>
+</div>
+
+<?php if ($show !== 'all'): ?>
+<div style="text-align:center;">
+    <button id="showMoreBtn" class="ebook-btn">Show More</button>
+</div>
+
+<script>
+document.getElementById("showMoreBtn").addEventListener("click", function() {
+    fetch("librarian/e-books.php?show=all")
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("ebooks-section").innerHTML = data;
+        });
+});
+</script>
+<?php endif; ?>
+<!--end-->
+
+<script>
+document.getElementById("showMoreBtn").addEventListener("click", function() {
+    
+    fetch("ebooks.php?show=all")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("ebooks-section").innerHTML = data;
+            document.getElementById("showMoreBtn").style.display = "none"; // hide button
+        });
+});
+</script>
+
 
   <section class="my-5">
     <h2 class="custom-heading">Available Resources</h2>
