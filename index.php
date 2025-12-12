@@ -17,8 +17,8 @@ session_start();
 
   <style>
     .carousel-item img {
-      width: 100vw;
-      height: 90vh;
+      width: 70vw;
+      height: 70vh;
     }
 
     .custom-heading {
@@ -58,7 +58,7 @@ session_start();
     }
 
     footer {
-      background: linear-gradient(to right, #A66E4A, #5A3620);
+      background: linear-gradient(to right, #0866a5ff, #025974ff);
       color: #fff;
       text-align: center;
       padding: 20px 10px;
