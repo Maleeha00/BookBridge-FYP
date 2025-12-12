@@ -13,7 +13,7 @@ session_start();
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
-  <link rel="icon" type="image/png" href="uploads/assests/book.png">
+  <link rel="icon" type="image/png" href="uploads/assests/book.jpg">
 
   <style>
     .carousel-item img {
@@ -71,7 +71,7 @@ session_start();
     }
 
     .about-page {
-      background: #f2f2f2;
+      background: #ffffffff;
       padding: 60px 0;
       margin-top: 60px;
     }
@@ -99,7 +99,7 @@ session_start();
     .section-icon {
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, #2d8b6cab 0%, #00326ac5 100%);
+      background: linear-gradient(135deg, #0399f0ab 0%, #0352adc5 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -155,7 +155,7 @@ session_start();
     }
 
     .contact-icon {
-      background: #006a5891;
+      background: #092779c2;
       color: #fff;
       border-radius: 50%;
       width: 40px;
@@ -186,17 +186,135 @@ session_start();
       .left-contact-logo {
         text-align: center;
       }
-.news-section-placeholder {
-      min-height: 80px; 
-      padding: 10px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #f8f9fa; 
-      border-bottom: 1px solid #ddd; 
+
+      .news-section-placeholder {
+        min-height: 80px;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+      }
     }
 
+/* Footer Ka Overall Container */
+.main-footer-hrca {
+    background-color: #3b3c8b; /* Blue/Purple background color */
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding-top: 0;
+}
+
+/* Main Content Layout (Logo, Links, Social) */
+.footer-content-container-hrca {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px; /* Ya jitni aapki site ki max-width hai */
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.footer-col-hrca {
+    padding: 0 15px;
+}
+
+/* Column Widths */
+.footer-about-hrca {
+    flex: 2; /* Takes more space */
+    max-width: 450px;
+}
+
+.footer-links-hrca, .footer-social-hrca {
+    flex: 1; /* Takes less space */
+    max-width: 250px;
+}
+
+/* Text Styles */
+.footer-logo-hrca img {
+    height: 60px; /* Logo height */
+    filter: brightness(0) invert(1); /* Logo ko white karne ke liye (agar original color ho) */
+    margin-bottom: 15px;
+}
+
+.footer-about-hrca p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* Headings */
+.footer-links-hrca h4, .footer-social-hrca h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Links Section Styles */
+.footer-links-hrca ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links-hrca li {
+    margin-bottom: 10px;
+}
+
+.footer-links-hrca a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-links-hrca a:hover {
+    color: #f6b333; /* Hover color */
+}
+
+/* Social Icons Styles */
+.social-icons-hrca {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icon-hrca {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    transition: transform 0.2s;
+}
+
+.social-icon-hrca.facebook { background-color: #3b5998; }
+.social-icon-hrca.twitter { background-color: #00acee; }
+.social-icon-hrca.youtube { background-color: #c4302b; }
+
+/* Responsive Styles for Smaller Screens */
+@media (max-width: 768px) {
+    .footer-content-container-hrca {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
     }
+
+    .footer-col-hrca {
+        margin-bottom: 30px;
+        max-width: 90%;
+    }
+  
+    /* Center the social icons on mobile */
+    .social-icons-hrca {
+        justify-content: center;
+    }
+    
+}
+
   </style>
 </head>
 
@@ -257,11 +375,6 @@ session_start();
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <div class="ebooks-home-section">
-    <?php include 'ebooks_portion.php'; ?>
-</div>
-
-
 
   <section class="my-5">
     <h2 class="custom-heading">Available Resources</h2>
@@ -354,10 +467,41 @@ session_start();
   </div>
 
   <hr />
-  <footer>
-    © <?= date("Y") ?> F.G. Degree College For Women, Kharian Cantt. All Rights Reserved.
-    Digital Library | Made with ❤ by <b>Aqsa Hakeem, Maleeha and Iqra Noureen (BSIT)</b>
+  <!-- Footer HTML Code -->
+  <footer class="main-footer-hrca">
+
+    <!-- Main Content Area -->
+    <div class="footer-content-container-hrca">
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col-hrca footer-links-hrca">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="about.php">About Us</a></li>
+          <li><a href="ebooks.php">Ebooks</a></li>
+          <li><a href="gallery.php">Gallery</a></li>
+          <li><a href="about.php">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col-hrca footer-social-hrca">
+        <h4>Connect with Us</h4>
+        <div class="social-icons-hrca">
+          <a href="#" class="social-icon-hrca facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon-hrca twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon-hrca youtube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+      <div>
+        All Rights Reserved © <?= date("Y") ?> F.G. Degree College For Women, Kharian Cantt. | Made with ❤ by <b>Aqsa Hakeem, Maleeha and Iqra Noureen (BSIT)</b>
+      </div>
+    </div>
   </footer>
+
+  
 
   <script>
     function showLoginPrompt() {

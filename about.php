@@ -97,13 +97,12 @@
     }
 
     footer {
-      background: linear-gradient(to right, #A66E4A, #5A3620);
+      background: linear-gradient(to right, #0866a5ff, #025974ff);
       color: #fff;
       text-align: center;
       padding: 20px 10px;
       font-size: 14px;
     }
-
 
     #home {
       background: linear-gradient(to right, #dfe9f3, #ffffff);
