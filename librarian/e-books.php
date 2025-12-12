@@ -387,7 +387,14 @@ $categories = [
         </div>
     </div>
 </div>
-
+<?php
+$show = $_GET['show'] ?? '';
+if ($show !== 'all') {
+    $sql = "SELECT * FROM books LIMIT 20";
+} else {
+    $sql = "SELECT * FROM books";
+}
+?>
 <style>
 .ebooks-grid {
     display: grid;

@@ -8,7 +8,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
-    <link rel="icon" type="image/png" href="uploads/assests/book.jpg">
+    <link rel="icon" type="image/png" href="uploads/assests/book.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -117,7 +117,7 @@
     <nav class="auth-navbar">
         <div class="container">
             <a href="login.php" class="auth-logo">
-                <img src="/uploads/assests/book.jpg" alt="Library Logo" class="logo-image">
+                <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
                 <span class="navbar-title">BookBridge</span>
             </a>
             <div class="auth-nav-links">

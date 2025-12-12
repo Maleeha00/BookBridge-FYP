@@ -13,7 +13,7 @@ session_start();
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
-  <link rel="icon" type="image/png" href="uploads/assests/book.jpg">
+  <link rel="icon" type="image/png" href="uploads/assests/book.png">
 
   <style>
     .carousel-item img {
@@ -206,7 +206,7 @@ session_start();
   <nav class="auth-navbar">
     <div class="container">
       <a href="login.php" class="auth-logo">
-        <img src="/uploads/assests/book.jpg" alt="Library Logo" class="logo-image">
+        <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
         <span class="navbar-title">BookBridge</span>
       </a>
       <div class="auth-nav-links">
@@ -257,6 +257,11 @@ session_start();
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+  <div class="ebooks-home-section">
+    <?php include 'ebooks_portion.php'; ?>
+</div>
+
+
 
   <section class="my-5">
     <h2 class="custom-heading">Available Resources</h2>

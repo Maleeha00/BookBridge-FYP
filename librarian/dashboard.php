@@ -448,8 +448,24 @@ if ($result) {
             </div>
         </div>
     </div>
+</div> 
+ <!--circulation statistics portion-->
+ <div class="dashboard-row">
+    <div class="dashboard-col">
+        <div class="card">
+            <div class="card-header">
+                <h3>Circulation Statistics</h3>
+            </div>
+
+            <div class="card-body">
+                <?php include '../librarian/circulation_report.php'; ?>
+            </div>
+        </div>
+    </div>
 </div>
 
+
+ <!--end circualtion statistics-->
 <div class="dashboard-row">
     <div class="dashboard-col">
         <div class="card">
