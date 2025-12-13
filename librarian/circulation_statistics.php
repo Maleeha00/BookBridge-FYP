@@ -231,8 +231,8 @@ new Chart(document.getElementById('barChart'), {
 <a href="circulation_details.php">
     <button style="
         padding: 10px 18px;
-        background: #2b4eff;
-        color: white;
+        background: #ffd82bff;
+        color: black;
         border: none;
         margin-right: 10px;
         border-radius: 6px;

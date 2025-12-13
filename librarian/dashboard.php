@@ -457,7 +457,7 @@ if ($result) {
                 <h3>Circulation Statistics</h3>
             </div>
             <div class="card-body">
-                <?php include '../librarian/circulation_report.php'; ?>
+                <?php include '../librarian/circulation_statistics.php'; ?>
             </div>
         </div>
     </div>
