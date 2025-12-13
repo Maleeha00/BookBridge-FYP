@@ -237,6 +237,7 @@ new Chart(document.getElementById('barChart'), {
         margin-right: 10px;
         border-radius: 6px;
         cursor: pointer;
+        float: right;
     ">
         View Details
     </button>

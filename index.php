@@ -375,7 +375,6 @@ session_start();
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
   <section class="my-5">
     <h2 class="custom-heading">Available Resources</h2>
     <div class="d-flex justify-content-center flex-wrap">

@@ -456,15 +456,12 @@ if ($result) {
             <div class="card-header">
                 <h3>Circulation Statistics</h3>
             </div>
-
             <div class="card-body">
                 <?php include '../librarian/circulation_report.php'; ?>
             </div>
         </div>
     </div>
 </div>
-
-
  <!--end circualtion statistics-->
 <div class="dashboard-row">
     <div class="dashboard-col">
