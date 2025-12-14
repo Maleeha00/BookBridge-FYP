@@ -12,7 +12,7 @@ session_start();
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
-  <link rel="icon" type="image/png" href="uploads/assests/book.png">
+  <link rel="icon" type="image/png" href="uploads/assests/book.jpeg">
 
   <style>
     .carousel-item img { width: 100vw; height: 90vh; }
@@ -54,10 +54,14 @@ session_start();
 <nav class="auth-navbar"> 
     <div class="container">
         <a href="login.php" class="auth-logo">
-            <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
+            <img src="/uploads/assests/book.jpeg" alt="Library Logo" class="logo-image">
             <span class="navbar-title">BookBridge</span>
         </a>
         <div class="auth-nav-links">
+                      <a href="event news.php" class="auth-nav-link">
+                <i class="fa-light fa-envelope-open-text"></i>
+                <span>NEWS &EVENTS</span>
+            </a>
             <a href="gallery.php" class="auth-nav-link">
                 <i class="fas fa-images"></i>
                 <span>Gallery</span>

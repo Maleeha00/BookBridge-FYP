@@ -126,7 +126,7 @@ while ($row = $result->fetch_assoc()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($category); ?> - Library Catalog</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" href="../uploads/assests/book.png">
+    <link rel="icon" type="image/png" href="../uploads/assests/book.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -809,7 +809,7 @@ while ($row = $result->fetch_assoc()) {
     <nav class="catalog-navbar">
         <div class="navbar-container">
             <a href="catalog.php" class="navbar-brand">
-                <img src="../uploads/assests/book.png" alt="Library Logo" class="logo-image">
+                <img src="../uploads/assests/book.jpeg" alt="Library Logo" class="logo-image">
 <span class="navbar-book_name">BookBridge</span>
             </a>
             

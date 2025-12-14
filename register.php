@@ -82,15 +82,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Register </title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
-    <link rel="icon" type="image/png" href="uploads/assests/book.png">
+    <link rel="icon" type="image/png" href="uploads/assests/book.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
    <nav class="auth-navbar">
     <div class="container" style="display: flex;">
         <a href="login.php" class="auth-logo" style="display: flex;">
-            <img src="uploads/assests/book.png" alt="Library Logo" style="height: 40px;">
-            <span style="font-family: 'Brush Script MT', serif; font-size: 24px; font-weight: bold; color: #5C4033;">BookBridge</span>
+            <img src="uploads/assests/book.jpeg" alt="Library Logo" style="height: 40px;">
+            <span style="font-family: 'Brush Script MT', serif; font-size: 24px; font-weight: bold; color: #064ab7ff;">BookBridge</span>
         </a>
         <div class="auth-nav-links" style="margin-left: auto;">
             <a href="gallery.php" class="auth-nav-link">

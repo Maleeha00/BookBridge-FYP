@@ -861,7 +861,7 @@ while ($row = $result->fetch_assoc()) {
     <nav class="catalog-navbar">
         <div class="navbar-container">
             <a href="catalog.php" class="navbar-brand">
-                <img src="../uploads/assests/book.png" alt="Library Logo" class="logo-image">
+                <img src="../uploads/assests/book.jpeg" alt="Library Logo" class="logo-image">
 <span class="navbar-book_name">BookBridge</span>
             </a>
             

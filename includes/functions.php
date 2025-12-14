@@ -623,3 +623,4 @@ function autoProcessReservationsOnAvailability($conn, $bookId) {
     return array('success' => false, 'message' => 'No reservations to process.');
 }
     ?>
+   
