@@ -137,7 +137,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <i class="fas fa-file-alt"></i> 
                     <span class="sidebar-menu-label">Clearance Report</span>
                     </a>
-
                     <a href="feedback.php" class="sidebar-menu-item <?php echo $currentPage == 'feedback.php' ? 'active' : ''; ?>">
                         <i class="fas fa-comments"></i>
                         <span class="sidebar-menu-label">Feedback</span>

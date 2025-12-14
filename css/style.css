@@ -1,34 +1,31 @@
 
-
 :root {
-  --primary-color: #1E3A8A;        /* Deep Blue */
-  --primary-light: #3B82F6;        /* Light Blue */
-  --primary-dark: #1E40AF;         /* Darker Navy */
+  --primary-color: #7C4A2D;       
+  --primary-light: #A66E4A;       
+  --primary-dark: #5A3620;        
 
-  --secondary-color: #F0F7FF;      /* Soft Blue-White Background */
-  --accent-color: #60A5FA;         /* Accent Sky Blue */
+  --secondary-color: #F9F5F0;     
+  --accent-color: #C97B4A;        
 
   --success-color: #22C55E;
   --warning-color: #FBBF24;
   --danger-color: #EF4444;
 
-  --text-color: #1E293B;           /* Slate Blue Text */
-  --text-light: #64748B;           /* Light Slate */
+  --text-color: #3B2A1A;          
+  --text-light: #846D5B;          
 
   --white: #FFFFFF;
 
-  --gray-100: #E2E8F0;             /* Light Cool Gray */
-  --gray-200: #CBD5E1;
-  --gray-300: #94A3B8;
-  --gray-400: #64748B;
-  --gray-500: #475569;
+  --gray-100: #F4EFEB;            
+  --gray-200: #E3DCD7;
+  --gray-300: #CFC3BC;
+  --gray-400: #B0A49C;
+  --gray-500: #8E7C71;
 
   --border-radius: 10px;
-  --box-shadow: 0 6px 16px rgba(30, 58, 138, 0.15);  /* Blue Shadows */
+  --box-shadow: 0 6px 16px rgba(124, 74, 45, 0.15);  
   --transition: all 0.3s ease-in-out;
 }
-
-
 
 * {
     margin: 0;

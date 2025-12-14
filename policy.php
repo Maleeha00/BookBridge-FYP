@@ -15,11 +15,11 @@
     }
 
     .rules-header {
-      background: linear-gradient(135deg, #977518ff, #9c6e17ff);
+      background: linear-gradient(135deg, #104dcfff, #4fb9ffff);
       color: #ffffffff;
       text-align: center;
       padding: 30px 20px;
-      border-bottom: 2px solid #79623bff;
+      border-bottom: 2px solid #00a2ffff;
       font-family: 'Playfair Display', serif;
     }
 
@@ -38,13 +38,13 @@
       display: flex;
       align-items: flex-start;
       padding: 15px 10px;
-      border-bottom: 1px dashed #d4c3a3;
+      border-bottom: 1px dashed #0048e2ff;
     }
 
     .rule-item i {
       font-size: 1.4rem;
       margin-right: 15px;
-      color: #a67c52;
+      color: #0588f3ff;
     }
 
     .rule-text {
@@ -56,14 +56,14 @@
       display: inline-block;
       margin: 20px auto;
       padding: 10px 20px;
-      background: linear-gradient(135deg, #8b3e11ad, #9e3f22ff);
+      background: linear-gradient(135deg, #0905e6ad, #032ff5ff);
       color: white;
       border-radius: 8px;
       text-decoration:none;
     }
 
     .back-link:hover {
-      background: linear-gradient(135deg, #8a6851ad, #611d08ff);
+      background: linear-gradient(135deg, #0f67dbad, #0b36f1ff);
     }
 
     .back-btn
@@ -87,7 +87,7 @@
       <div class="rule-text">Remember you email or id in order to login.</div>
     </div>
     <div class="rule-item"><i class="fas fa-hand-holding-heart"></i>
-      <div class="rule-text">You can reuquest or reserve one book at a time</div>
+      <div class="rule-text">You can request or reserve one book at a time</div>
     </div>
     <div class="rule-item"><i class="fas fa-laptop"></i>
       <div class="rule-text">Library computers are for academic and research purposes only.</div>

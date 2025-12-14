@@ -97,13 +97,12 @@
     }
 
     footer {
-      background: linear-gradient(to right, #A66E4A, #5A3620);
+      background: linear-gradient(to right, #0866a5ff, #025974ff);
       color: #fff;
       text-align: center;
       padding: 20px 10px;
       font-size: 14px;
     }
-
 
     #home {
       background: linear-gradient(to right, #dfe9f3, #ffffff);
@@ -172,7 +171,7 @@
   <nav class="auth-navbar">
     <div class="container">
       <a href="login.php" class="auth-logo">
-        <img src="/uploads/assests/book.jpeg" alt="Library Logo" class="logo-image">
+        <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
         <span class="navbar-title">BookBridge</span>
       </a>
       <div class="auth-nav-links">
