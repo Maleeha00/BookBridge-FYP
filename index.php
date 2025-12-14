@@ -328,6 +328,10 @@ session_start();
             <span class="navbar-title">BookBridge</span>
         </a>
         <div class="auth-nav-links">
+          <a href="news.php" class="auth-nav-link">
+                <i class="fa-regular fa-envelope"></i>
+                <span>News</span>
+            </a>
             <a href="gallery.php" class="auth-nav-link">
                 <i class="fas fa-images"></i>
                 <span>Gallery</span>
@@ -344,12 +348,6 @@ session_start();
     </div>
   </nav>
 
-
-  <div class="news-section-placeholder">
-    <p>
-      News section
-    </p>
-  </div>
 
   <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
     <div class="carousel-indicators">
