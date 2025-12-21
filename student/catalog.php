@@ -410,7 +410,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
 
     <div class="catalog-container">
         <div class="welcome-section">
-            <h1><span style="font-family: 'Lucida Handwriting';">
+            <h1>
                     Welcome to Our Book Bridge
                 </span></h1>
 
