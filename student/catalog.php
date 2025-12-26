@@ -161,8 +161,6 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             padding: 40px 20px;
         }
 
-
-        /* WELCOME SECTION */
         .welcome-section {
             text-align: center;
             margin-bottom: 30px;
@@ -175,7 +173,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         .welcome-section h1 {
             font-size: 3em;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            background: linear-gradient(135deg, #024abdff, #0132bbff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -185,8 +183,6 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             color: #64748B;
         }
 
-
-        /* TOGGLE BUTTONS */
         .toggle-buttons {
             margin-top: 10px;
         }
@@ -197,7 +193,6 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             border: none;
             border-radius: 20px;
             background-color: #BFDBFE;
-            /* Light Blue */
             color: #0F172A;
             font-weight: bold;
             cursor: pointer;
@@ -205,8 +200,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         }
 
         .toggle-buttons button.active {
-            background-color: #1071e8ff;
-            /* Soft Sky Blue */
+            background-color: #0559c0ff;
             color: #fff;
         }
 
@@ -218,8 +212,6 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             display: block;
         }
 
-
-        /* LIBRARY SHELVES */
         .library-shelves {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
@@ -234,7 +226,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
 
         .shelves-header h2 {
             font-size: 2.5em;
-            color: #3B82F6;
+            color: #0b54caff;
         }
 
         .shelves-header p {
@@ -242,8 +234,6 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             color: #64748B;
         }
 
-
-        /* CATEGORY GRID (DOORS) */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -253,10 +243,10 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         }
 
         .category-door {
-            background: linear-gradient(145deg, #1071e8ff, #1071e8ff);
+            background: linear-gradient(145deg, #0562d4ff, #0265ddff);
             border-radius: 15px;
             height: 200px;
-            border: 3px solid #3B82F6;
+            border: 3px solid #0347b4ff;
             cursor: pointer;
             overflow: hidden;
             position: relative;
@@ -302,24 +292,22 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             transform: translateY(-50%);
             width: 12px;
             height: 12px;
-            background: #1071e8ff;
+            background: #024ba3ff;
             border-radius: 50%;
             box-shadow: 0 2px 4px rgba(12, 99, 240, 0.94),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
 
-
-        /* ALMIRAH */
         .almirah-container {
             padding: 30px 40px;
         }
 
         .almirah {
             margin-bottom: 50px;
-            background-color: #086fecff;
+            background-color: #0658bdff;
             padding: 20px;
             border-radius: 15px;
-            border: 2px solid #1c77dfff;
+            border: 2px solid #055bbdff;
             box-shadow: 0 2px 10px rgba(59, 130, 246, 0.15);
         }
 
@@ -330,8 +318,6 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             font-size: 24px;
         }
 
-
-        /* SEMESTER GRID */
         .sem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -370,8 +356,6 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             font-size: 14px;
         }
 
-
-        /* LINKS */
         .sub-links p {
             margin: 5px 0;
         }
@@ -410,9 +394,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
 
     <div class="catalog-container">
         <div class="welcome-section">
-            <h1>
-                    Welcome to Our Book Bridge
-                </span></h1>
+            <h1>Welcome to Our Book Bridge</h1>
 
             <div class="toggle-buttons">
                 <button class="active" onclick="toggleSection('resources')" id="btn-resources">All Resources</button>
