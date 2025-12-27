@@ -409,382 +409,61 @@ session_start();
       }
       ?>
     </div>
-  <section class="container my-5">
+<?php
+include_once 'includes/config.php';
+
+$sql = "SELECT title, cover_image, file_path 
+        FROM ebooks 
+        ORDER BY created_at DESC 
+        LIMIT 100";
+
+$result = $conn->query($sql);
+?>
+<section class="container my-5">
   <h2 class="custom-heading">Available eBooks</h2>
+
   <div class="row justify-content-center">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            color: var(--text-color);
-        }
-     
-    .almirah-container {
-      padding: 30px 40px;
-    }
-    .almirah {
-      margin-bottom: 50px;
-      background-color: #9e7251ff;
-      padding: 20px;
-      border-radius: 15px;
-      border: 2px solid #d4bfa8;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .almirah h2 {
-      text-align: center;
-      color: #5c3d26;
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-    .sem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      justify-items: center;
-    }
-    .sem-box {
-      background-color: #fff;
-      border: 1px solid #d9c5b2;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      width: 100%;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .sem-box:hover {
-      transform: translateY(-5px);
-    }
-    .sem-box i {
-      font-size: 26px;
-      color: #8b5e3c;
-      margin-bottom: 10px;
-    }
-    .sem-box h3 {
-      font-size: 18px;
-      color: #5c3d26;
-      margin-bottom: 5px;
-    }
-    .sem-box p {
-      color: #7c5c44;
-      font-size: 14px;
-    }
-    .sub-links p { margin: 5px 0; }
-    .sub-links a { color: #8b5e3c; font-weight: bold; text-decoration: none; }
-    .sub-links a:hover { text-decoration: underline; }
-    </style>
-</head>
-            <?php
-            $categoryIcons = [
-                "Biology" => "fas fa-dna",
-                "Chemistry" => "fas fa-flask",
-                "Physics" => "fas fa-atom",
-                "Urdu Novels" => "fas fa-feather-alt",
-                "Islamiat" => "fas fa-mosque",
-                "Computer" => "fas fa-laptop-code",
-                "Science" => "fas fa-flask",
-                "Economics" => "fas fa-chart-line",
-                "English" => "fas fa-book-open",
-                "HPE" => "fas fa-dumbbell",
-                "Information Technology" => "fas fa-network-wired",
-                "Mathematics" => "fa-solid fa-square-root-alt",
-                "Urdu" => "fa-solid fa-pen-nib",
-                "Pakistan Studies" => "fa-solid fa-flag",
-                "Computer Science" => "fa-solid fa-laptop-code",
-                "History" => "fas fa-landmark",
-                "Geography" => "fas fa-globe-asia",
-                "Political Science" => "fas fa-balance-scale-left",
-                "Sociology" => "fas fa-users",
-                "Psychology" => "fas fa-brain",
-                "Business Studies" => "fas fa-briefcase",
-                "Art & Design" => "fas fa-palette",
-                "Philosophy" => "fas fa-comment-dots"
-            ];
-            ?>
-            </div>
+
+<?php if ($result && $result->num_rows > 0): ?>
+  <?php while ($ebook = $result->fetch_assoc()): ?>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <div class="card shadow-sm h-100 text-center">
+        <img src="<?php echo htmlspecialchars($ebook['cover_image']); ?>"
+             class="card-img-top"
+             style="height:220px; object-fit:cover;">
+
+        <div class="card-body">
+          <h6 class="card-title">
+            <?php echo htmlspecialchars($ebook['title']); ?>
+          </h6>
+ <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
+             class="btn btn-primary btn-sm"
+             view>
+            View
+          </a>
+          <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
+             class="btn btn-primary btn-sm"
+             download>
+             Download
+          </a>
         </div>
-
-            <div class="almirah-container">
-
-
-                <div class="almirah">
-                    <h2 style="color: #ffffffff;">BS Information Technology</h2>
-                    <div class="sem-grid">
-                        <div class="sem-box">
-                            <i class="fas fa-desktop"></i>
-                            <h3>Semester 1</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS IT-1">E-Books</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS IT-1">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS IT-1">Past Papers</a></p>
-
-
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-microchip"></i>
-                            <h3>Semester 2</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS IT-2">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS IT-2">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS IT-2">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-database"></i>
-                            <h3>Semester 3</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS IT-3">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS IT-3">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS IT-3">Past Papers</a></p>
-                            </div>
-                        </div>
-
-                        <div class="sem-box">
-                            <i class="fas fa-network-wired"></i>
-                            <h3>Semester 4</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS IT-4">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS IT-4">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS IT-4">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-robot"></i>
-                            <h3>Semester 5</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS IT-5">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS IT-5">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS IT-5">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-database"></i>
-                            <h3>Semester 6</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS IT-6">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS IT-6">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS IT-6">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-network-wired"></i>
-                            <h3>Semester 7</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS IT-7">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS IT-7">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS IT-7">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-cloud"></i>
-                            <h3>Semester 8</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS IT-8">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS IT-8">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS IT-8">Past Papers</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="almirah">
-                    <h2 style="color: #ffffffff;">BS Health and Physical Education</h2>
-                    <div class="sem-grid">
-                        <div class="sem-box">
-                            <i class="fas fa-running"></i>
-                            <h3>Semester 1</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS HPE-1">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS HPE-1">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS HPE-1">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-volleyball-ball"></i>
-                            <h3>Semester 2</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS HPE-2">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS HPE-2">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS HPE-2">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-biking"></i>
-                            <h3>Semester 3</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS HPE-3">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS HPE-3">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS HPE-3">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-table-tennis"></i>
-                            <h3>Semester 4</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS HPE-4">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS HPE-4">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS HPE-4">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-first-aid"></i>
-                            <h3>Semester 5</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS HPE-5">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS HPE-5">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS HPE-5">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-dumbbell"></i>
-                            <h3>Semester 6</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS HPE-6">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS HPE-6">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS HPE-6">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-heartbeat"></i>
-                            <h3>Semester 7</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS HPE-7">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS HPE-7">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS HPE-7">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-swimmer"></i>
-                            <h3>Semester 8</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS HPE-8">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS HPE-8">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS HPE-8">Past Papers</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="almirah">
-                    <h2 style="color: #ffffffff;">BS English</h2>
-                    <div class="sem-grid">
-                        <div class="sem-box">
-                            <i class="fas fa-book-open"></i>
-                            <h3>Semester 1</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS ENG-1">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS ENG-1">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS ENG-1">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-newspaper"></i>
-                            <h3>Semester 2</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS ENG-2">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS ENG-2">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS ENG-2">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-pen-fancy"></i>
-                            <h3>Semester 3</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS ENG-3">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS ENG-3">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS ENG-3">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-theater-masks"></i>
-                            <h3>Semester 4</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS ENG-4">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS ENG-4">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS ENG-4">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-book"></i>
-                            <h3>Semester 5</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS ENG-5">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS ENG-5">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS ENG-5">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-keyboard"></i>
-                            <h3>Semester 6</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS ENG-6">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS ENG-6">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS ENG-6">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-microphone-alt"></i>
-                            <h3>Semester 7</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS ENG-7">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS ENG-7">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS ENG-7">Past Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-film"></i>
-                            <h3>Semester 8</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=BS ENG-8">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=outlines&category=BS ENG-8">Outlines</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=BS ENG-8">Past Papers</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="almirah">
-                    <h2 style="color: #ffffffff;">Intermediate</h2>
-                    <div class="sem-grid">
-                        <div class="sem-box">
-                            <i class="fas fa-pencil-alt"></i>
-                            <h3>1 year</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=1st Year Pre Engineering">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=1st Year Pre Engineering">Past
-                                        Papers</a></p>
-                            </div>
-                        </div>
-                        <div class="sem-box">
-                            <i class="fas fa-calculator"></i>
-                            <h3>2nd year</h3>
-                            <div class="sub-links">
-                                <p><a href="ebooks.php?type=ebooks&category=2nd Year Pre Engineering">Ebooks</a></p>
-                                <p><a href="ebooks.php?type=pastpapers&category=2nd Year Pre Engineering">Past
-                                        Papers</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+      </div>
     </div>
-    </div>
-    <script>
-        function toggleSection(section) {
-            document.getElementById('resources').classList.remove('active');
-            document.getElementById('ebooks').classList.remove('active');
-            document.getElementById('btn-resources').classList.remove('active');
-            document.getElementById('btn-ebooks').classList.remove('active');
-            document.getElementById(section).classList.add('active');
-            document.getElementById('btn-' + section).classList.add('active');
-        }
-    </script>
+  <?php endwhile; ?>
+<?php else: ?>
+  <p class="text-center">No eBooks available.</p>
+<?php endif; ?>
 
+  </div>
+
+  <div class="text-center mt-3">
+    <a href="login.php" class="btn btn-outline-primary">
+      View Full Library
+    </a>
+  </div>
+</section>
+
+   
   <div class="about-page">
     <div class="about-container">
       <div class="about-section">
