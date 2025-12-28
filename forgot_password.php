@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Forgot Password </title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
-    <link rel="icon" type="image/png" href="uploads/assests/book.png">
+    <link rel="icon" type="image/png" href="uploads/assests/book.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <nav class="auth-navbar">
         <div class="container">
             <a href="login.php" class="auth-logo">
-                <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
+                <img src="/uploads/assests/book.jpeg" alt="Library Logo" class="logo-image">
                 <span class="navbar-title">BookBridge</span>
             </a>
             <div class="auth-nav-links">

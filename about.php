@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
-  <link rel="icon" type="image/svg+xml" href="uploads/assests/book.png">
+  <link rel="icon" type="image/svg+xml" href="uploads/assests/book.jpeg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
@@ -171,7 +171,7 @@
   <nav class="auth-navbar">
     <div class="container">
       <a href="login.php" class="auth-logo">
-        <img src="/uploads/assests/new logo.jpg" alt="Library Logo" class="logo-image">
+        <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
         <span class="navbar-title">BookBridge</span>
       </a>
       <div class="auth-nav-links">

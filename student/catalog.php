@@ -57,21 +57,17 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Catalog </title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" href="../uploads/assests/book.png">
+    <link rel="icon" type="image/png" href="../uploads/assests/book.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             color: var(--text-color);
         }
+<<<<<<< HEAD
 
         .catalog-navbar {
             background: rgba(255, 255, 255, 0.95);
@@ -369,6 +365,96 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         .sub-links a:hover {
             text-decoration: underline;
         }
+=======
+        .catalog-navbar { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 15px 0; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
+        .navbar-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .navbar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--primary-color); }
+        .navbar-brand img { height: 65px; width: 100%; }
+        .navbar-book_name { font-size: 1.6em; font-weight: bold; }
+        .navbar-actions { display: flex; gap: 15px; }
+        .nav-btn { padding: 10px 20px; border-radius: 25px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+        .dashboard-btn, .logout-btn { color: var(--white); border: none; transition: var(--transition); border-radius: var(--border-radius); }
+        .dashboard-btn { background: var(--primary-color); }
+        .dashboard-btn:hover { background: var(--primary-light); }
+        .logout-btn { background: var(--accent-color); }
+        .logout-btn:hover { background: var(--primary-light); }
+        .catalog-container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        .welcome-section { text-align: center; margin-bottom: 30px; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+        .welcome-section h1 { font-size: 3em; margin-bottom: 15px; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .welcome-section p { font-size: 1.2em; color: var(--text-light); margin-bottom: 20px; }
+        .toggle-buttons { margin-top: 10px; }
+        .toggle-buttons button { padding: 10px 20px; margin: 0 5px; border: none; border-radius: 20px; background-color: #d2b48c; color: #fff; font-weight: bold; cursor: pointer; transition: 0.3s ease; }
+        .toggle-buttons button.active { background-color: #a67b5b; }
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+        .library-shelves { background: rgba(255, 255, 255, 0.9); border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+        .shelves-header { text-align: center; margin-bottom: 40px; }
+        .shelves-header h2 { font-size: 2.5em; color: var(--primary-color); margin-bottom: 10px; }
+        .shelves-header p { font-size: 1.1em; color: var(--text-light); }
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .category-door { background: linear-gradient(145deg, #8B5E3C, #7C4A2D); border-radius: 15px; height: 200px; border: 3px solid #5A3620; cursor: pointer; overflow: hidden; position: relative; transition: all 0.4s ease; }
+        .category-door:hover { transform: perspective(1000px) rotateY(-15deg) scale(1.05); }
+        .door-content { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white; text-align: center; position: relative; z-index: 2; }
+        .door-icon { font-size: 3em; margin-bottom: 15px; color: #F9F5F0; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+        .door-book_name { font-size: 1.3em; font-weight: 700; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+        .door-subbook_name { font-size: 0.9em; opacity: 0.9; font-weight: 500; }
+        .door-handle { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background: #C97B4A; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+    
+     
+    .almirah-container {
+      padding: 30px 40px;
+    }
+    .almirah {
+      margin-bottom: 50px;
+      background-color: #9e7251ff;
+      padding: 20px;
+      border-radius: 15px;
+      border: 2px solid #d4bfa8;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .almirah h2 {
+      text-align: center;
+      color: #5c3d26;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .sem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .sem-box {
+      background-color: #fff;
+      border: 1px solid #d9c5b2;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .sem-box:hover {
+      transform: translateY(-5px);
+    }
+    .sem-box i {
+      font-size: 26px;
+      color: #8b5e3c;
+      margin-bottom: 10px;
+    }
+    .sem-box h3 {
+      font-size: 18px;
+      color: #5c3d26;
+      margin-bottom: 5px;
+    }
+    .sem-box p {
+      color: #7c5c44;
+      font-size: 14px;
+    }
+    .sub-links p { margin: 5px 0; }
+    .sub-links a { color: #8b5e3c; font-weight: bold; text-decoration: none; }
+    .sub-links a:hover { text-decoration: underline; }
+>>>>>>> 5dde97ab74d23ef009c46b90207260899ccd5373
     </style>
 </head>
 
@@ -376,7 +462,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
     <nav class="catalog-navbar">
         <div class="navbar-container">
             <a href="#" class="navbar-brand">
-                <img src="../uploads/assests/book.png" alt="Library Logo">
+                <img src="../uploads/assests/book.jpeg" alt="Library Logo">
                 <span class="navbar-book_name">BookBridge</span>
             </a>
             <div class="navbar-actions">

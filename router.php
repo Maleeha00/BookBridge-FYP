@@ -20,6 +20,10 @@ if ($cleanPath === '/about.php') {
     require 'about.php';
     return;
 }
+if ($cleanPath === '/news.php') {
+    require 'news.php';
+    return;
+}
 if ($cleanPath === '/gallery.php') {
     require 'gallery.php';
     return;
