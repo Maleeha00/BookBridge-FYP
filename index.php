@@ -415,7 +415,7 @@ include_once 'includes/config.php';
 $sql = "SELECT title, cover_image, file_path 
         FROM ebooks 
         ORDER BY created_at DESC 
-        LIMIT 100";
+        LIMIT 30";
 
 $result = $conn->query($sql);
 ?>
@@ -446,6 +446,10 @@ $result = $conn->query($sql);
              download>
              Download
           </a>
+          <a href="rate_submit.php?title=<?php echo urlencode($ebook['title']); ?>"
+     class="btn btn-primary btn-sm">
+    Rate
+  </a>
         </div>
       </div>
     </div>
@@ -457,7 +461,7 @@ $result = $conn->query($sql);
   </div>
 
   <div class="text-center mt-3">
-    <a href="login.php" class="btn btn-outline-primary">
+    <a href="student/ebooks.php" class="btn btn-outline-primary">
       View Full Library
     </a>
   </div>
