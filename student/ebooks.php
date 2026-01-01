@@ -1,6 +1,5 @@
 <?php
 include_once '../includes/header.php';
-
 if ($_SESSION['role'] != 'student' && $_SESSION['role'] != 'faculty') {
     header('Location: ../login.php');
     exit();

@@ -412,10 +412,10 @@ session_start();
 <?php
 include_once 'includes/config.php';
 
-$sql = "SELECT title, cover_image, file_path 
+$sql = "SELECT id,title, cover_image, file_path 
         FROM ebooks 
         ORDER BY created_at DESC 
-        LIMIT 100";
+        LIMIT 30";
 
 $result = $conn->query($sql);
 ?>
@@ -426,38 +426,41 @@ $result = $conn->query($sql);
 
 <?php if ($result && $result->num_rows > 0): ?>
   <?php while ($ebook = $result->fetch_assoc()): ?>
-    <div class="col-md-3 col-sm-6 mb-4">
-      <div class="card shadow-sm h-100 text-center">
+  <div class="col-md-3 col-sm-6 mb-4">
+    <div class="card shadow-sm h-100 text-center">
+      <a href="rate_submit.php?id=<?php echo $ebook['id']; ?>">
         <img src="<?php echo htmlspecialchars($ebook['cover_image']); ?>"
              class="card-img-top"
-             style="height:220px; object-fit:cover;">
+             style="height:220px; object-fit:cover; cursor:pointer;">
+      </a>
 
-        <div class="card-body">
-          <h6 class="card-title">
-            <?php echo htmlspecialchars($ebook['title']); ?>
-          </h6>
- <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
-             class="btn btn-primary btn-sm"
-             view>
-            View
-          </a>
-          <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
-             class="btn btn-primary btn-sm"
-             download>
-             Download
-          </a>
-        </div>
+      <div class="card-body">
+        <h6 class="card-title">
+          <?php echo htmlspecialchars($ebook['title']); ?>
+        </h6>
+
+        <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
+           class="btn btn-primary btn-sm" target="_blank">
+          View
+        </a>
+
+        <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
+           class="btn btn-primary btn-sm" download>
+          Download
+        </a>
       </div>
+
     </div>
-  <?php endwhile; ?>
-<?php else: ?>
+  </div>
+<?php endwhile; ?>
+
   <p class="text-center">No eBooks available.</p>
 <?php endif; ?>
 
   </div>
 
   <div class="text-center mt-3">
-    <a href="login.php" class="btn btn-outline-primary">
+    <a href="student/ebooks.php" class="btn btn-outline-primary">
       View Full Library
     </a>
   </div>
