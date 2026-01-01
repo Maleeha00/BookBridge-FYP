@@ -454,7 +454,7 @@ $result = $conn->query($sql);
   </div>
 <?php endwhile; ?>
 
-  <p class="text-center">No eBooks available.</p>
+ <!-- <p class="text-center">No eBooks available.</p>-->
 <?php endif; ?>
 
   </div>
