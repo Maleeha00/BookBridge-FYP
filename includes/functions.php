@@ -622,5 +622,15 @@ function autoProcessReservationsOnAvailability($conn, $bookId) {
     
     return array('success' => false, 'message' => 'No reservations to process.');
 }
+function addNews($conn, $title, $content, $author_id) {
+    $stmt = $conn->prepare("INSERT INTO news (title, content, author_id) VALUES (?, ?, ?)");
+    $stmt->bind_param("ssi", $title, $content, $author_id);
+    if($stmt->execute()){
+        return array('success' => true, 'message' => 'News added successfully!');
+    } else {
+        return array('success' => false, 'message' => 'Error adding news: '.$stmt->error);
+    }
+}
+
     ?>
    

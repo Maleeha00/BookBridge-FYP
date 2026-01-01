@@ -387,10 +387,6 @@ session_start();
             <span class="navbar-title">BookBridge</span>
         </a>
         <div class="auth-nav-links">
-          <a href="news.php" class="auth-nav-link">
-                <i class="fa-regular fa-envelope"></i>
-                <span>News</span>
-            </a>
             <a href="gallery.php" class="auth-nav-link">
                 <i class="fas fa-images"></i>
                 <span>Gallery</span>
@@ -432,6 +428,7 @@ session_start();
       <span class="visually-hidden">Next</span>
     </button>
   </div> 
+<?php include 'news_section.php'; ?>
 
   <section class="my-5">
     <h2 class="custom-heading">Available Resources</h2>
