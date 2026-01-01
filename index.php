@@ -471,15 +471,9 @@ session_start();
 <?php
 include_once 'includes/config.php';
 
-$sql = "SELECT 
-            title,
-            author,
-            category,
-            type,
-            cover_image,
-            file_path
-        FROM ebooks
-        ORDER BY created_at DESC
+$sql = "SELECT title, cover_image, file_path 
+        FROM ebooks 
+        ORDER BY created_at DESC 
         LIMIT 100";
 
 
@@ -492,25 +486,18 @@ $result = $conn->query($sql);
 
 <?php if ($result && $result->num_rows > 0): ?>
   <?php while ($ebook = $result->fetch_assoc()): ?>
-    <div class="col-md-3 col-sm-6 mb-4">
-      <div class="card shadow-sm h-100 text-center">
+  <div class="col-md-3 col-sm-6 mb-4">
+    <div class="card shadow-sm h-100 text-center">
+      <a href="rate_submit.php?id=<?php echo $ebook['id']; ?>">
         <img src="<?php echo htmlspecialchars($ebook['cover_image']); ?>"
              class="card-img-top"
-             style="height:220px; object-fit:cover;">
+             style="height:220px; object-fit:cover; cursor:pointer;">
+      </a>
 
         <div class="card-body">
           <h6 class="card-title">
             <?php echo htmlspecialchars($ebook['title']); ?>
           </h6>
-<p class="strong mb-1 text-muted">
-  <?= htmlspecialchars($ebook['author']) ?>
-</p>
-<p class="small mb-1 text-muted">
-  <?= htmlspecialchars($ebook['category']) ?>
-</p>
-<span class="badge bg-secondary mb-2">
-  <?= htmlspecialchars($ebook['type']) ?>
-</span>      
  <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
              class="btn btn-primary btn-sm"
              view>
@@ -532,7 +519,7 @@ $result = $conn->query($sql);
   </div>
 
   <div class="text-center mt-3">
-    <a href="login.php" class="btn btn-outline-primary">
+    <a href="student/ebooks.php" class="btn btn-outline-primary">
       View Full Library
     </a>
   </div>
