@@ -314,6 +314,65 @@ session_start();
     }
     
 }
+/* Card */
+.card {
+  border-radius: 16px;
+  border: 1px solid #e3f2fd;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(13,71,161,0.25);
+}
+
+/* Body */
+.ebook-card-body {
+  padding: 14px;
+}
+
+.ebook-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0d47a1;
+}
+
+.ebook-author,
+.ebook-category {
+  font-size: 13px;
+  color: #1565c0;
+  margin-bottom: 4px;
+}
+
+.ebook-author i,
+.ebook-category i {
+  color: #1e88e5;
+  margin-right: 5px;
+}
+
+/* Badge */
+.ebook-type-badge {
+  background: #e3f2fd;
+  color: #0d47a1;
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Footer */
+.ebook-card-footer {
+  padding: 10px 14px 14px;
+  display: flex;
+  gap: 8px;
+}
+
+.ebook-card-footer .btn {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 
   </style>
 </head>
@@ -412,10 +471,17 @@ session_start();
 <?php
 include_once 'includes/config.php';
 
-$sql = "SELECT title, cover_image, file_path 
-        FROM ebooks 
-        ORDER BY created_at DESC 
+$sql = "SELECT 
+            title,
+            author,
+            category,
+            type,
+            cover_image,
+            file_path
+        FROM ebooks
+        ORDER BY created_at DESC
         LIMIT 100";
+
 
 $result = $conn->query($sql);
 ?>
@@ -436,6 +502,15 @@ $result = $conn->query($sql);
           <h6 class="card-title">
             <?php echo htmlspecialchars($ebook['title']); ?>
           </h6>
+<p class="strong mb-1 text-muted">
+  <?= htmlspecialchars($ebook['author']) ?>
+</p>
+<p class="small mb-1 text-muted">
+  <?= htmlspecialchars($ebook['category']) ?>
+</p>
+<span class="badge bg-secondary mb-2">
+  <?= htmlspecialchars($ebook['type']) ?>
+</span>      
  <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
              class="btn btn-primary btn-sm"
              view>
