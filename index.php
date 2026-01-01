@@ -480,7 +480,7 @@ $sql = "SELECT
             file_path
         FROM ebooks
         ORDER BY created_at DESC
-        LIMIT 100";
+        LIMIT 30";
 
 
 $result = $conn->query($sql);
@@ -521,18 +521,22 @@ $result = $conn->query($sql);
              download>
              Download
           </a>
+           <a href="rate_submit.php?title=<?php echo urlencode($ebook['title']); ?>"
+     class="btn btn-primary btn-sm">
+    Rate
+  </a>gi
         </div>
       </div>
     </div>
   <?php endwhile; ?>
 <?php else: ?>
-  <p class="text-center">No eBooks available.</p>
+   <!-- <p class="text-center">No eBooks available.</p>-->
 <?php endif; ?>
 
   </div>
 
   <div class="text-center mt-3">
-    <a href="login.php" class="btn btn-outline-primary">
+    <a href="student/ebooks.php" class="btn btn-outline-primary">
       View Full Library
     </a>
   </div>
