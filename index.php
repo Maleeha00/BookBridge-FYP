@@ -521,7 +521,7 @@ $result = $conn->query($sql);
            <a href="rate_submit.php?title=<?php echo urlencode($ebook['title']); ?>"
      class="btn btn-primary btn-sm">
     Rate
-  </a>gi
+  </a>
         </div>
       </div>
     </div>

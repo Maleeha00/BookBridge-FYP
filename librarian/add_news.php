@@ -1,7 +1,7 @@
 <?php
+session_start();
 include_once '../includes/config.php';
-include_once '../includes/header.php';
-include_once '../includes/functions.php'; 
+include_once '../includes/functions.php'; // contains checkUserRole()
 checkUserRole('librarian');
 
 // Action determine karein
@@ -10,41 +10,52 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 // Handle POST requests (Add/Edit)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $title = $_POST['title'];
-    $short_description = $_POST['short_description'];
-    $full_content = $_POST['full_content'];
+    $short_description = $_POST['short_description'] ?? '';
+    $content = $_POST['full_content'] ?? '';
+    $author_id = $_SESSION['user_id'];
 
     // Optional image upload
-    $image = '';
-    if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        $image = 'uploads/news_'.time().'.'.$ext;
-        move_uploaded_file($_FILES['image']['tmp_name'], '../'.$image);
-    }
+   $image = '';
+if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
+    $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    $image = 'uploads/news_images/news_'.time().'.'.$ext; // naya folder
+    move_uploaded_file($_FILES['image']['tmp_name'], '../'.$image);
+}
 
-    if($action == 'add'){
-        $stmt = $conn->prepare("INSERT INTO news (title, short_description, full_content, image) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $title, $short_description, $full_content, $image);
+    if ($action == 'add') {
+        $stmt = $conn->prepare(
+            "INSERT INTO news (title, short_description, content, author_id) VALUES (?, ?, ?, ?)"
+        );
+        $stmt->bind_param("sssi", $title, $short_description, $content, $author_id);
         $stmt->execute();
+
         $_SESSION['dashboard_message'] = "News added successfully!";
         $_SESSION['dashboard_message_type'] = "success";
-        header("Location: librarian_news.php");
+
+        header("Location: add_news.php"); // automatic refresh
         exit;
     }
 
     if($action == 'edit' && $id > 0){
-        // Check if new image uploaded
         if(empty($image)){
-            $stmt = $conn->prepare("UPDATE news SET title=?, short_description=?, full_content=? WHERE id=?");
-            $stmt->bind_param("sssi", $title, $short_description, $full_content, $id);
+            $stmt = $conn->prepare(
+                "UPDATE news SET title=?, short_description=?, content=? WHERE id=?"
+            );
+            $stmt->bind_param("sssi", $title, $short_description, $content, $id);
         } else {
-            $stmt = $conn->prepare("UPDATE news SET title=?, short_description=?, full_content=?, image=? WHERE id=?");
-            $stmt->bind_param("ssssi", $title, $short_description, $full_content, $image, $id);
+            $stmt = $conn->prepare(
+                "UPDATE news SET title=?, short_description=?, content=?, image=? WHERE id=?"
+            );
+            $stmt->bind_param("ssssi", $title, $short_description, $content, $image, $id);
         }
         $stmt->execute();
+
         $_SESSION['dashboard_message'] = "News updated successfully!";
         $_SESSION['dashboard_message_type'] = "success";
-        header("Location: librarian_news.php");
+
+        header("Location: add_news.php"); // automatic refresh
         exit;
     }
 }
@@ -54,11 +65,16 @@ if($action == 'delete' && $id > 0){
     $stmt = $conn->prepare("DELETE FROM news WHERE id=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
+
     $_SESSION['dashboard_message'] = "News deleted successfully!";
     $_SESSION['dashboard_message_type'] = "danger";
-    header("Location: librarian_news.php");
+
+    header("Location: add_news.php"); // automatic refresh after delete
     exit;
 }
+
+// Include header AFTER all POST/DELETE logic to avoid "headers already sent"
+include_once '../includes/header.php';
 ?>
 
 <h1 class="page-title">Manage News / Events</h1>
@@ -72,16 +88,16 @@ if($action == 'delete' && $id > 0){
 unset($_SESSION['dashboard_message']);
 unset($_SESSION['dashboard_message_type']);
 ?>
-
 <?php endif; ?>
 
 <?php if($action == 'add' || $action == 'edit'): 
+    $news = [];
     if($action == 'edit'){
         $stmt = $conn->prepare("SELECT * FROM news WHERE id=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $news = $result->fetch_assoc();
+        $news = $result->fetch_assoc() ?? [];
     }
 ?>
 <div class="card">
@@ -92,15 +108,15 @@ unset($_SESSION['dashboard_message_type']);
         <form method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label>Title</label>
-                <input type="text" name="title" class="form-control" required value="<?php echo $news['title'] ?? ''; ?>">
+                <input type="text" name="title" class="form-control" required value="<?php echo htmlspecialchars($news['title'] ?? ''); ?>">
             </div>
             <div class="mb-3">
                 <label>Short Description</label>
-                <textarea name="short_description" class="form-control" required><?php echo $news['short_description'] ?? ''; ?></textarea>
+                <textarea name="short_description" class="form-control" required><?php echo htmlspecialchars($news['short_description'] ?? ''); ?></textarea>
             </div>
             <div class="mb-3">
                 <label>Full Content</label>
-                <textarea name="full_content" class="form-control" rows="5" required><?php echo $news['full_content'] ?? ''; ?></textarea>
+                <textarea name="full_content" class="form-control" rows="5" required><?php echo htmlspecialchars($news['content'] ?? ''); ?></textarea>
             </div>
             <div class="mb-3">
                 <label>Image (optional)</label>
@@ -110,14 +126,14 @@ unset($_SESSION['dashboard_message_type']);
                 <?php endif; ?>
             </div>
             <button type="submit" class="btn btn-primary"><?php echo ucfirst($action); ?> News</button>
-            <a href="librarian_news.php" class="btn btn-secondary">Cancel</a>
+            <a href="add_news.php" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </div>
 <?php else: ?>
 
 <div class="mb-3 text-end">
-    <a href="librarian_news.php?action=add" class="btn btn-success"><i class="fas fa-plus"></i> Add News/Event</a>
+<a href="?action=add" class="btn btn-success">Add News/Event</a>
 </div>
 
 <div class="card">
@@ -145,8 +161,8 @@ unset($_SESSION['dashboard_message_type']);
                     <td><?php echo htmlspecialchars($row['short_description']); ?></td>
                     <td><?php echo date('M d, Y', strtotime($row['created_at'])); ?></td>
                     <td>
-                        <a href="librarian_news.php?action=edit&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                        <a href="librarian_news.php?action=delete&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this news?');"><i class="fas fa-trash"></i></a>
+                        <a href="?action=edit&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="?action=delete&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                     </td>
                 </tr>
                 <?php endwhile; ?>
