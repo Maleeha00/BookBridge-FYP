@@ -17,18 +17,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $author_id = $_SESSION['user_id'];
 
     // Optional image upload
-   $image = '';
-if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
-    $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-    $image = 'uploads/news_images/news_'.time().'.'.$ext; // naya folder
-    move_uploaded_file($_FILES['image']['tmp_name'], '../'.$image);
+  // Optional image upload
+$image = '';
+    if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
+        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $image = 'uploads/news_'.time().'.'.$ext;
+        move_uploaded_file($_FILES['image']['tmp_name'], '../'.$image);
+    
 }
+
 
     if ($action == 'add') {
         $stmt = $conn->prepare(
-            "INSERT INTO news (title, short_description, content, author_id) VALUES (?, ?, ?, ?)"
+            "INSERT INTO news (title, short_description, content, author_id, image ) VALUES (?, ?, ?, ?,?)"
         );
-        $stmt->bind_param("sssi", $title, $short_description, $content, $author_id);
+        $stmt->bind_param("sssis", $title, $short_description, $content, $author_id ,$image);
         $stmt->execute();
 
         $_SESSION['dashboard_message'] = "News added successfully!";
@@ -122,8 +125,8 @@ unset($_SESSION['dashboard_message_type']);
                 <label>Image (optional)</label>
                 <input type="file" name="image" class="form-control">
                 <?php if(!empty($news['image'])): ?>
-                    <img src="../<?php echo $news['image']; ?>" width="100" class="mt-2">
-                <?php endif; ?>
+        <img src="../<?= $news['image'] ?>" width="100">
+    <?php endif; ?>
             </div>
             <button type="submit" class="btn btn-primary"><?php echo ucfirst($action); ?> News</button>
             <a href="add_news.php" class="btn btn-secondary">Cancel</a>

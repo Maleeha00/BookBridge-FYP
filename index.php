@@ -429,6 +429,29 @@ session_start();
     </button>
   </div> 
 <?php include 'news_section.php'; ?>
+<?php
+include_once 'includes/config.php';
+
+// Latest 5 news
+$sql = "SELECT * FROM news ORDER BY created_at DESC LIMIT 5";
+$result = $conn->query($sql);
+?>
+
+<div class="latest-news">
+    <h2>Latest News / Events</h2>
+    <ul>
+        <?php while($row = $result->fetch_assoc()): ?>
+        <li>
+            <h4><a href="news_detail.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['title']) ?></a></h4>
+            <p><?= htmlspecialchars($row['short_description']) ?></p>
+            <?php if(!empty($row['image'])): ?>
+                <img src="<?= $row['image'] ?>" width="150" alt="News Image">
+            <?php endif; ?>
+            <small><?= date('M d, Y', strtotime($row['created_at'])) ?></small>
+        </li>
+        <?php endwhile; ?>
+    </ul>
+</div>
 
   <section class="my-5">
     <h2 class="custom-heading">Available Resources</h2>
