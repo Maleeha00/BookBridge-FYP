@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['check'])) {
         to {opacity: 1; transform: translateY(0);}
     }
     h2 {
-        color: #7C4A2D;
+        color: #362d7cff;
         text-align: center;
         font-size: 2rem;
         margin-bottom: 25px;
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['check'])) {
         margin-top: 15px;
         font-weight: bold;
         font-size: 1rem;
-        color: #5A3620;
+        color: #362d7cff;
     }
     input[type="text"] {
         width: 100%;
@@ -88,12 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['check'])) {
         transition: 0.3s;
     }
     input[type="text"]:focus {
-        border-color: #A66E4A;
+        border-color: #4a5ea6ff;
         outline: none;
-        box-shadow: 0px 0px 8px rgba(166,110,74,0.5);
+        box-shadow: 0px 0px 8px rgba(220, 53, 70, 0.07);
     }
     button {
-        background: linear-gradient(135deg, #7C4A2D, #A66E4A);
+        background: linear-gradient(135deg, #2d2d7cff, #2d2d7cff);
         color: white;
         padding: 14px;
         border: none;
@@ -122,9 +122,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['check'])) {
         border: 1px solid #c3e6cb;
     }
     .error {
-        background: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
+        background: #d7e8f8ff;
+        color: #1c4072ff;
+        border: 1px solid #d3c6f5ff;
     }
 </style>
 </head>
