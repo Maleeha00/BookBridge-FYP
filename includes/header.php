@@ -19,7 +19,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <title>FGDCW Bookbridge system</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="icon" type="image/png" href="../uploads/assests/book.jpeg">
+    <link rel="icon" type="image/png" href="../uploads/assests/book.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
@@ -29,7 +29,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <div class="navbar-container">
             <div class="navbar-left">
                 <a href="dashboard.php" class="navbar-logo">
-                    <img src="../uploads/assests/book.jpeg" alt="Library Logo" class="logo-image">
+                    <img src="../uploads/assests/book.png" alt="Library Logo" class="logo-image">
                     <span class="navbar-title">BookBridge</span>
                 </a>
             </div>
