@@ -28,6 +28,10 @@ $rec_result = mysqli_query($conn, $rec_query);
   padding: 35px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.12);
 }
+.left-section,
+.right-section {
+  min-height: 520px;
+}
 
 .book-cover {
   max-width: 220px;
@@ -100,10 +104,12 @@ $rec_result = mysqli_query($conn, $rec_query);
 
 <div class="review-wrapper">
   <div class="container">
-    <div class="row g-4">
+    <div class="left-section">
+     <div class="row g-4">
 
   <div class="col-lg-8">
-    <div class="review-card">
+    <div class="left-section">
+     <div class="review-card">
 
       <div class="text-center mb-4">
         <img src="<?php echo $book['cover_image']; ?>" 
@@ -131,7 +137,7 @@ $rec_result = mysqli_query($conn, $rec_query);
             </div>
           </div>
         </div>
-
+      </div>
         <label class="fw-bold mb-2">Your Review</label>
         <textarea name="review"
                   rows="4"
@@ -147,7 +153,8 @@ $rec_result = mysqli_query($conn, $rec_query);
     </div>
   </div>
   <div class="col-lg-4">
-    <div class="recommend-card">
+    <div class="right-section">
+     <div class="recommend-card">
       <h5 class="mb-3">Recommended Books</h5>
 
       <?php while ($rec = mysqli_fetch_assoc($rec_result)): ?>
@@ -159,6 +166,7 @@ $rec_result = mysqli_query($conn, $rec_query);
             </a>
           </div>
         </div>
+      </div>
       <?php endwhile; ?>
 
     </div>
