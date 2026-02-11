@@ -38,12 +38,20 @@
     height: 50px;
     object-fit: cover;
 }
-
 .auth-nav-links {
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);  
+    display: flex;
+    gap: 20px;
+}
+
+.nav-left-links {
+    position: absolute;
+    left: 20px;  
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     gap: 20px;
 }
