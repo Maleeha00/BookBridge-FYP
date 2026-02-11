@@ -16,7 +16,7 @@ if(!$news){
 <h1><?= htmlspecialchars($news['title']) ?></h1>
 <p><?= htmlspecialchars($news['short_description']) ?></p>
 <?php if(!empty($news['image'])): ?>
-    <img src="<?= $news['image'] ?>" width="300">
+    <img src="<?= $news['image'] ?>" width=" ">
 <?php endif; ?>
 <p><?= nl2br(htmlspecialchars($news['content'])) ?></p>
 <small>Posted on <?= date('M d, Y', strtotime($news['created_at'])) ?></small>

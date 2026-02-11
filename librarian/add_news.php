@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $content = $_POST['full_content'] ?? '';
     $author_id = $_SESSION['user_id'];
 
-    // Optional image upload
   // Optional image upload
 $image = '';
     if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
@@ -37,7 +36,7 @@ $image = '';
         $_SESSION['dashboard_message'] = "News added successfully!";
         $_SESSION['dashboard_message_type'] = "success";
 
-        header("Location: add_news.php"); // automatic refresh
+        header("Location: add_news.php"); 
         exit;
     }
 
@@ -58,7 +57,7 @@ $image = '';
         $_SESSION['dashboard_message'] = "News updated successfully!";
         $_SESSION['dashboard_message_type'] = "success";
 
-        header("Location: add_news.php"); // automatic refresh
+        header("Location: add_news.php"); 
         exit;
     }
 }
@@ -72,11 +71,10 @@ if($action == 'delete' && $id > 0){
     $_SESSION['dashboard_message'] = "News deleted successfully!";
     $_SESSION['dashboard_message_type'] = "danger";
 
-    header("Location: add_news.php"); // automatic refresh after delete
+    header("Location: add_news.php"); 
     exit;
 }
 
-// Include header AFTER all POST/DELETE logic to avoid "headers already sent"
 include_once '../includes/header.php';
 ?>
 
@@ -125,7 +123,8 @@ unset($_SESSION['dashboard_message_type']);
                 <label>Image (optional)</label>
                 <input type="file" name="image" class="form-control">
                 <?php if(!empty($news['image'])): ?>
-        <img src="../<?= $news['image'] ?>" width="100">
+        <img src="../<?= $news['image'] ?>" width=" ">
+
     <?php endif; ?>
             </div>
             <button type="submit" class="btn btn-primary"><?php echo ucfirst($action); ?> News</button>

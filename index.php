@@ -445,7 +445,7 @@ $result = $conn->query($sql);
             <h4><a href="news_detail.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['title']) ?></a></h4>
             <p><?= htmlspecialchars($row['short_description']) ?></p>
             <?php if(!empty($row['image'])): ?>
-                <img src="<?= $row['image'] ?>" width="150" alt="News Image">
+                <img src="<?= $row['image'] ?>" width=" " alt="News Image">
             <?php endif; ?>
             <small><?= date('M d, Y', strtotime($row['created_at'])) ?></small>
         </li>
