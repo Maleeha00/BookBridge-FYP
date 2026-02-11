@@ -492,6 +492,7 @@ $result = $conn->query($sql);
 include_once 'includes/config.php';
 
 $sql = "SELECT 
+            id,
             title,
             author,
             category,
@@ -528,9 +529,7 @@ $result = $conn->query($sql);
 <p class="small mb-1 text-muted">
   <?= htmlspecialchars($ebook['category']) ?>
 </p>
-<span class="badge bg-secondary mb-2">
-  <?= htmlspecialchars($ebook['type']) ?>
-</span>      
+     
  <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
              class="btn btn-primary btn-sm"
              view>
@@ -541,10 +540,11 @@ $result = $conn->query($sql);
              download>
              Download
           </a>
-           <a href="rate_submit.php?title=<?php echo urlencode($ebook['title']); ?>"
-     class="btn btn-primary btn-sm">
-    Rate
-  </a>
+           <a href="rate_submit.php?id=<?php echo $ebook['id']; ?>" 
+   class="btn btn-primary btn-sm">
+   Rate
+</a>
+
         </div>
       </div>
     </div>
