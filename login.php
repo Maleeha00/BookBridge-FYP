@@ -105,9 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              <i class="fa-solid fa-newspaper"></i>
              <span>News</span>
              </a>
-             <a href="contact.php" class="auth-nav-link">
+             <a href="policy.php" class="auth-nav-link">
              <i class="fas fa-envelope"></i>
-             <span>Contact</span>
+             <span>Policy</span>
              </a>
              </div>
 
@@ -130,8 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="auth-page">
         <div class="auth-container">
             <div class="auth-header">
-                <h1>Welcome Back</h1>
-                
+                <h1>Welcome Back</h1>  
             </div>
             
             <div class="auth-body">
@@ -195,8 +194,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </form>
             </div>
             
-            <div class="auth-footer">
-                <p>&copy; 2025 Book Bridge. All rights reserved.</p>
+             <div class="auth-footer">
+                <footer>
+                    <p>&copy; <span id="currentYear"></span> FGDCW BookBridge all rights reserved</p>
+                </footer>
+
+                <script>
+                    document.getElementById("currentYear").textContent = new Date().getFullYear();
+                </script>
             </div>
         </div>
     </div>

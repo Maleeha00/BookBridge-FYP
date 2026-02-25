@@ -395,9 +395,9 @@ session_start();
              <i class="fa-solid fa-newspaper"></i>
              <span>News</span>
              </a>
-             <a href="contact.php" class="auth-nav-link">
+             <a href="policy.php" class="auth-nav-link">
              <i class="fas fa-envelope"></i>
-             <span>Contact</span>
+             <span>Policy</span>
              </a>
              </div>
 

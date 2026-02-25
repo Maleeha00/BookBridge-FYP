@@ -15,11 +15,11 @@
     }
 
     .rules-header {
-      background: linear-gradient(135deg, #104dcfff, #4fb9ffff);
+      background: linear-gradient(135deg, rgb(8, 59, 168), rgb(5, 95, 155));
       color: #ffffffff;
       text-align: center;
       padding: 30px 20px;
-      border-bottom: 2px solid #00a2ffff;
+      border-bottom: 2px solid rgb(4, 83, 129);
       font-family: 'Playfair Display', serif;
     }
 
@@ -38,13 +38,13 @@
       display: flex;
       align-items: flex-start;
       padding: 15px 10px;
-      border-bottom: 1px dashed #0048e2ff;
+      border-bottom: 1px dashed rgb(4, 83, 129);
     }
 
     .rule-item i {
       font-size: 1.4rem;
       margin-right: 15px;
-      color: #0588f3ff;
+      color: rgb(4, 83, 129);
     }
 
     .rule-text {
@@ -56,14 +56,14 @@
       display: inline-block;
       margin: 20px auto;
       padding: 10px 20px;
-      background: linear-gradient(135deg, #0905e6ad, #032ff5ff);
+      background: linear-gradient(135deg, rgb(8, 59, 168), rgb(5, 95, 155));
       color: white;
       border-radius: 8px;
       text-decoration:none;
     }
 
     .back-link:hover {
-      background: linear-gradient(135deg, #0f67dbad, #0b36f1ff);
+      background: linear-gradient(135deg, rgb(8, 59, 168), rgb(5, 95, 155));
     }
 
     .back-btn
