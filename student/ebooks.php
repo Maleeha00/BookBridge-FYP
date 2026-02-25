@@ -165,7 +165,7 @@ while ($row = $result->fetch_assoc()) {
                                     case 'doc':
                                     case 'docx':
                                         $iconClass = 'fas fa-file-word';
-                                        $iconColor = '#0d6efd';
+                                        $iconColor = '#033a8b';
                                         break;
                                     default:
                                         $iconClass = 'fas fa-file-alt';
@@ -450,7 +450,7 @@ while ($row = $result->fetch_assoc()) {
 
 .breadcrumb-link:hover {
     color: var(--primary-dark);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .breadcrumb-separator {

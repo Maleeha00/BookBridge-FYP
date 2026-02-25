@@ -72,7 +72,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 15px 0;
-            box-shadow: 0 2px 20px rgba(59, 131, 246, 0.93);
+            box-shadow: 0 2px 20px rgba(45, 1, 148, 0.93);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -130,26 +130,21 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         }
 
         .dashboard-btn {
-            background: #5DA3FA;
-            /* Light Blue */
+            background:rgba(45, 1, 148, 0.93);
         }
 
         .dashboard-btn:hover {
-            background: #3B82F6;
-            /* Primary Blue */
+            background: rgba(45, 1, 148, 0.93);
         }
 
         .logout-btn {
-            background: #93C5FD;
-            /* Soft baby blue */
+            background: rgba(45, 1, 148, 0.93);
         }
 
         .logout-btn:hover {
-            background: #60A5FA;
+            background: rgba(45, 1, 148, 0.93);
         }
 
-
-        /* PAGE CONTAINER */
         .catalog-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -168,7 +163,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         .welcome-section h1 {
             font-size: 3em;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, #024abdff, #0132bbff);
+            background: linear-gradient(135deg, rgb(3, 51, 129), rgb(4, 37, 131));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -195,7 +190,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         }
 
         .toggle-buttons button.active {
-            background-color: #0559c0ff;
+            background-color: rgba(45, 1, 148, 0.93);
             color: #fff;
         }
 
@@ -221,7 +216,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
 
         .shelves-header h2 {
             font-size: 2.5em;
-            color: #0b54caff;
+            color: rgba(45, 1, 148, 0.93);
         }
 
         .shelves-header p {
@@ -238,10 +233,10 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         }
 
         .category-door {
-            background: linear-gradient(145deg, #0562d4ff, #0265ddff);
+            background: linear-gradient(145deg, rgb(26, 8, 109), rgb(8, 5, 131));
             border-radius: 15px;
             height: 200px;
-            border: 3px solid #0347b4ff;
+            border: 3px solid rgba(45, 1, 148, 0.93);
             cursor: pointer;
             overflow: hidden;
             position: relative;
@@ -289,7 +284,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
             height: 12px;
             background: #024ba3ff;
             border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(12, 99, 240, 0.94),
+            box-shadow: 0 2px 4px rgba(45, 1, 148, 0.93),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
 
@@ -299,16 +294,16 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
 
         .almirah {
             margin-bottom: 50px;
-            background-color: #0658bdff;
+            background-color: rgba(45, 1, 148, 0.93);
             padding: 20px;
             border-radius: 15px;
-            border: 2px solid #055bbdff;
+            border: 2px solid rgba(45, 1, 148, 0.93);
             box-shadow: 0 2px 10px rgba(59, 130, 246, 0.15);
         }
 
         .almirah h2 {
             text-align: center;
-            color: #1949e7ff;
+            color: rgba(45, 1, 148, 0.93);
             margin-bottom: 20px;
             font-size: 24px;
         }
@@ -337,7 +332,7 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
 
         .sem-box i {
             font-size: 26px;
-            color: #3B82F6;
+            color: rgba(45, 1, 148, 0.93);
             margin-bottom: 10px;
         }
 
@@ -356,13 +351,13 @@ $totalBooks = $totalBooksResult->fetch_assoc()['total'];
         }
 
         .sub-links a {
-            color: #3B82F6;
+            color: rgba(45, 1, 148, 0.93);
             font-weight: bold;
             text-decoration: none;
         }
 
         .sub-links a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
     </style>
 </head>

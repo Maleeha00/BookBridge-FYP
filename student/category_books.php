@@ -863,7 +863,7 @@ while ($row = $result->fetch_assoc()) {
             <div class="fine-banner">
                 <strong><i class="fas fa-exclamation-triangle"></i> Outstanding Fines:</strong>
                 You have pending fines of <strong>PKR <?php echo number_format($pendingFines, 2); ?></strong>.
-                <a href="fines.php" style="color: white; text-decoration: underline; margin-left: 10px;">
+                <a href="fines.php" style="color: white; text-decoration: none; margin-left: 10px;">
                     Pay Now
                 </a>
             </div>

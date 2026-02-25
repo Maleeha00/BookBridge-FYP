@@ -380,29 +380,43 @@ session_start();
 <body>
 
   <!-- Navbar -->
-  <nav class="auth-navbar">
-    <div class="container">
-        <a href="login.php" class="auth-logo">
-            <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
-            <span class="navbar-title">BookBridge</span>
-        </a>
-        <div class="auth-nav-links">
-            <a href="gallery.php" class="auth-nav-link">
-                <i class="fas fa-images"></i>
-                <span>Gallery</span>
+ <nav class="auth-navbar">
+        <div class="container">
+            <a href="login.php" class="auth-logo">
+                <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
+                <span class="navbar-title">BookBridge</span>
             </a>
-            <a href="about.php" class="auth-nav-link">
-                <i class="fas fa-info-circle"></i>
-                <span>About</span>
-            </a>
-             <a href="login.php" class="auth-nav-link">
-                <i class="fas fa-user-plus"></i>
-                <span>Login</span>
-              </a>
             <div class="nav-left-links">
+             <a href="index.php" class="auth-nav-link">
+             <i class="fas fa-home"></i>
+             <span>Home</span>
+             </a>
+             <a href="news.php" class="auth-nav-link">
+             <i class="fa-solid fa-newspaper"></i>
+             <span>News</span>
+             </a>
+             <a href="policy.php" class="auth-nav-link">
+             <i class="fas fa-envelope"></i>
+             <span>Policy</span>
+             </a>
+             </div>
+
+            <div class="auth-nav-links">
+                <a href="gallery.php" class="auth-nav-link">
+                    <i class="fas fa-images"></i>
+                    <span>Gallery</span>
+                </a>
+                <a href="about.php" class="auth-nav-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <a href="login.php" class="auth-nav-link">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Login</span>
+                </a>
+            </div>
         </div>
-    </div>
-  </nav>
+    </nav>
 
 
   <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
