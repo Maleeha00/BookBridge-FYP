@@ -49,7 +49,7 @@ $rec_result = mysqli_query($conn, $rec_query);
 .recommend-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: center; }
 .recommend-item img { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; }
 .recommend-item a { text-decoration: none; font-weight: 600; color: #2b4eff; }
-.recommend-item a:hover { text-decoration: underline; }
+.recommend-item a:hover { text-decoration: none; }
 </style>
 
 

@@ -93,9 +93,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <nav class="auth-navbar">
         <div class="container">
             <a href="login.php" class="auth-logo">
-               <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
-<span class="navbar-title">BookBridge</span>
+                <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
+                <span class="navbar-title">BookBridge</span>
             </a>
+            <div class="nav-left-links">
+             <a href="index.php" class="auth-nav-link">
+             <i class="fas fa-home"></i>
+             <span>Home</span>
+             </a>
+             <a href="news.php" class="auth-nav-link">
+             <i class="fa-solid fa-newspaper"></i>
+             <span>News</span>
+             </a>
+             <a href="contact.php" class="auth-nav-link">
+             <i class="fas fa-envelope"></i>
+             <span>Contact</span>
+             </a>
+             </div>
+
             <div class="auth-nav-links">
                 <a href="gallery.php" class="auth-nav-link">
                     <i class="fas fa-images"></i>
@@ -105,10 +120,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <i class="fas fa-info-circle"></i>
                     <span>About</span>
                 </a>
+                <a href="login.php" class="auth-nav-link">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Login</span>
+                </a>
             </div>
         </div>
     </nav>
-
     <div class="auth-page">
         <div class="auth-container">
             <div class="auth-header">
