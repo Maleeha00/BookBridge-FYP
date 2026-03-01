@@ -581,7 +581,7 @@ if ($result) {
 .stat-overlay h2 {
     font-size: 20px;
     margin-bottom: 0px;
-    color: saddlebrown; 
+    color: navy; 
 }
 .stat-overlay p {
     font-size: 28px; 
@@ -601,9 +601,9 @@ if ($result) {
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    text-shadow: 1px 1px 3px rgba(5, 6, 66, 0.7);
     font-weight: bold;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(4, 1, 32, 0.3);
     padding: 10px;
     text-align: top;
 }
