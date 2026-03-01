@@ -443,30 +443,44 @@ session_start();
       <span class="visually-hidden">Next</span>
     </button>
   </div> 
-<?php include 'news_section.php'; ?>
 <?php
 include_once 'includes/config.php';
 
-// Latest 5 news
-$sql = "SELECT * FROM news ORDER BY created_at DESC LIMIT 5";
+$sql = "SELECT id, title, short_description, image 
+        FROM news 
+        ORDER BY created_at DESC 
+        LIMIT 5";
 $result = $conn->query($sql);
 ?>
 
-<div class="latest-news">
-    <h2>Latest News / Events</h2>
-    <ul>
-        <?php while($row = $result->fetch_assoc()): ?>
-        <li>
-            <h4><a href="news_detail.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['title']) ?></a></h4>
+<section class="news-preview-section container my-5">
+  <h2 class="custom-heading">Latest News</h2>
+
+  <div class="row justify-content-center">
+    <?php while($row = $result->fetch_assoc()): ?>
+      <div class="col-md-4 mb-4">
+        <div class="news-preview-card">
+          <img src="<?= htmlspecialchars($row['image']) ?>" alt="News">
+
+          <div class="news-preview-body">
+            <h5><?= htmlspecialchars($row['title']) ?></h5>
             <p><?= htmlspecialchars($row['short_description']) ?></p>
-            <?php if(!empty($row['image'])): ?>
-                <img src="<?= $row['image'] ?>" width="150" alt="News Image">
-            <?php endif; ?>
-            <small><?= date('M d, Y', strtotime($row['created_at'])) ?></small>
-        </li>
-        <?php endwhile; ?>
-    </ul>
-</div>
+
+            <a href="news_detail.php?id=<?= $row['id'] ?>" class="read-more-link">
+              Read more →
+            </a>
+          </div>
+        </div>
+      </div>
+    <?php endwhile; ?>
+  </div>
+
+  <div class="text-center">
+    <a href="news.php" class="btn btn-outline-primary mt-3">
+      View All News
+    </a>
+  </div>
+</section>
 
   <section class="my-5">
     <h2 class="custom-heading">Available Resources</h2>
