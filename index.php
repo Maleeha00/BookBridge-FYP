@@ -199,7 +199,7 @@ session_start();
     }
 
 /* Footer Ka Overall Container */
-.main-footer-hrca {
+.main-footer {
     background-color: #3b3c8b; /* Blue/Purple background color */
     color: #fff;
     font-family: Arial, sans-serif;
@@ -207,7 +207,7 @@ session_start();
 }
 
 /* Main Content Layout (Logo, Links, Social) */
-.footer-content-container-hrca {
+.footer-content {
     display: flex;
     justify-content: space-between;
     max-width: 1200px; /* Ya jitni aapki site ki max-width hai */
@@ -215,7 +215,7 @@ session_start();
     padding: 40px 20px;
 }
 
-.footer-col-hrca {
+.footer-col {
     padding: 0 15px;
 }
 
@@ -225,7 +225,7 @@ session_start();
     max-width: 450px;
 }
 
-.footer-links-hrca, .footer-social-hrca {
+.footer-links, .footer-social-links {
     flex: 1; /* Takes less space */
     max-width: 250px;
 }
@@ -244,35 +244,35 @@ session_start();
 }
 
 /* Headings */
-.footer-links-hrca h4, .footer-social-hrca h4 {
+.footer-links h4, .footer-social-links h4 {
     font-size: 18px;
     margin-bottom: 20px;
     font-weight: bold;
 }
 
 /* Links Section Styles */
-.footer-links-hrca ul {
+.footer-links ul {
     list-style: none;
     padding: 0;
 }
 
-.footer-links-hrca li {
+.footer-links li {
     margin-bottom: 10px;
 }
 
-.footer-links-hrca a {
+.footer-links a {
     color: #fff;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.2s;
 }
 
-.footer-links-hrca a:hover {
+.footer-links a:hover {
     color: #f6b333; /* Hover color */
 }
 
 /* Social Icons Styles */
-.social-icons-hrca {
+.social-icons {
     display: flex;
     gap: 15px;
     margin-top: 10px;
@@ -296,20 +296,20 @@ session_start();
 
 /* Responsive Styles for Smaller Screens */
 @media (max-width: 768px) {
-    .footer-content-container-hrca {
+    .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
         padding: 30px 20px;
     }
 
-    .footer-col-hrca {
+    .footer-col {
         margin-bottom: 30px;
         max-width: 90%;
     }
   
     /* Center the social icons on mobile */
-    .social-icons-hrca {
+    .social-icons {
         justify-content: center;
     }
     
@@ -650,14 +650,12 @@ $result = $conn->query($sql);
   </div>
 
   <hr />
-  <!-- Footer HTML Code -->
-  <footer class="main-footer-hrca">
+  
+  <footer class="main-footer">
+    <div class="footer-content">
 
-    <!-- Main Content Area -->
-    <div class="footer-content-container-hrca">
-
-      <!-- Column 2: Quick Links -->
-      <div class="footer-col-hrca footer-links-hrca">
+      
+      <div class="footer-col footer-links">
         <h4>Quick Links</h4>
         <ul>
           <li><a href="index.php">Home</a></li>
@@ -668,9 +666,9 @@ $result = $conn->query($sql);
         </ul>
       </div>
 
-      <div class="footer-col-hrca footer-social-hrca">
+      <div class="footer-col footer-social-links">
         <h4 class="footer-heading"> Connect with Us</h4>
-        <div class="social-icons-hrca">
+        <div class="social-icons">
   
   <a href="https://www.facebook.com/" target="_blank" class="social-icon-hrca facebook">
     <i class="fab fa-facebook-f"></i>
