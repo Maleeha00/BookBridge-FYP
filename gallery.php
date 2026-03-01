@@ -114,12 +114,26 @@
 
 <body>
 
-    <nav class="auth-navbar">
+ <nav class="auth-navbar">
         <div class="container">
             <a href="login.php" class="auth-logo">
                 <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
                 <span class="navbar-title">BookBridge</span>
             </a>
+            <div class="nav-left-links">
+             <a href="index.php" class="auth-nav-link">
+             <i class="fas fa-home"></i>
+             <span>Home</span>
+             </a>
+             <a href="news.php" class="auth-nav-link">
+             <i class="fa-solid fa-newspaper"></i>
+             <span>News</span>
+             </a>
+             <a href="policy.php" class="auth-nav-link">
+             <i class="fas fa-envelope"></i>
+             <span>Policy</span>
+             </a>
+             </div>
 
             <div class="auth-nav-links">
                 <a href="gallery.php" class="auth-nav-link">
@@ -138,10 +152,7 @@
         </div>
     </nav>
 
-
     <h1 class="gallery-title" style="margin-top:100px">Glimpses of Our Library</h1>
-
-
     <div class="gallery-container">
         <a class="gallery-item" href="#img1"><img src="uploads/assests/almira.jpg" alt=""></a>
         <a class="gallery-item" href="#img2"><img src="uploads/assests/libQuote.jpg" alt=""></a>

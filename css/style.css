@@ -80,12 +80,12 @@ img {
   vertical-align: middle;
 }
 
-.navbar-title {
+/*.navbar-title {
   font-family: Allegro;
   font-size: 28px;
   font-weight: bold;
   margin-left: 10px;
-}
+}*/
 .d-flex {
     display: flex;
 }

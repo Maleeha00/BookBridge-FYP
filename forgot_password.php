@@ -189,11 +189,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <i class="fas fa-arrow-left"></i>
                             Back to Login
                         </a>
-
-                        <a href="recover_account.php" class="btn-link-auth">
-                            <i class="fas fa-search"></i>
-                            Find Your Account
-                        </a>
                     </div>
                 </form>
             </div>
