@@ -21,26 +21,27 @@ $message = '';
 $messageType = '';
 
 
-function sendAccountEmail($toEmail, $toName, $subject, $bodyHtml) {
+function sendAccountEmail($toEmail, $toName, $subject, $bodyHtml)
+{
     $mail = new PHPMailer(true);
     try {
-       
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'iqranoureench@gmail.com';
-        $mail->Password   = 'vezw trnp kiwg cssa'; 
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
 
-        
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'iqranoureench@gmail.com';
+        $mail->Password = 'vezw trnp kiwg cssa';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+
         $mail->setFrom('iqranoureench@gmail.com', 'FGDCW BookBridge System');
         $mail->addAddress($toEmail, $toName);
 
-       
+
         $mail->isHTML(true);
         $mail->Subject = $subject;
-        $mail->Body    = $bodyHtml;
+        $mail->Body = $bodyHtml;
 
         $mail->send();
     } catch (Exception $e) {
@@ -50,12 +51,12 @@ function sendAccountEmail($toEmail, $toName, $subject, $bodyHtml) {
 
 
 if (isset($_GET['id']) && isset($_GET['action'])) {
-    $userId = (int)$_GET['id'];
+    $userId = (int) $_GET['id'];
     $action = $_GET['action'];
 
     if ($action === 'approve') {
         try {
-            
+
             $stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND approval_status = 'pending'");
             $stmt->bind_param("i", $userId);
             $stmt->execute();
@@ -67,22 +68,21 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 
             $user = $result->fetch_assoc();
 
-           
+
             $updateStmt = $conn->prepare("UPDATE users SET approval_status = 'approved', approved_at = NOW() WHERE id = ?");
             $updateStmt->bind_param("i", $userId);
 
             if ($updateStmt->execute()) {
-                
+
                 $token = bin2hex(random_bytes(16));
 
-                
+
                 $tokenStmt = $conn->prepare("UPDATE users SET email_verification_token = ? WHERE id = ?");
                 $tokenStmt->bind_param("si", $token, $userId);
                 $tokenStmt->execute();
 
-                
-               $verifyUrl = "http://localhost/lastedit23/Fgdcwlast/Fgdcw/verify_email.php?token=$token";
 
+                $verifyUrl = "http://localhost/BookBridge-FYP/verify_email.php?token=$token";
                 $subject = "Verify Your Email - FGDCW Library";
 
                 $body = "
@@ -107,7 +107,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 
     } elseif ($action === 'reject') {
         try {
-            
+
             $stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND approval_status = 'pending'");
             $stmt->bind_param("i", $userId);
             $stmt->execute();
@@ -119,12 +119,12 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 
             $user = $result->fetch_assoc();
 
-           
+
             $updateStmt = $conn->prepare("UPDATE users SET approval_status = 'rejected', rejected_at = NOW() WHERE id = ?");
             $updateStmt->bind_param("i", $userId);
 
             if ($updateStmt->execute()) {
-                
+
                 $notificationMsg = "Your account registration has been rejected. Please contact the library for more information.";
                 sendNotification($conn, $userId, $notificationMsg);
 

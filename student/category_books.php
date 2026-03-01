@@ -891,7 +891,6 @@ while ($row = $result->fetch_assoc()) {
                             <th>Publisher</th>
                             <th>Availability</th>
                             <th>Actions</th>
-                            <th>Add to wishlist</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -924,12 +923,6 @@ while ($row = $result->fetch_assoc()) {
                                             <i class="fas fa-bookmark"></i> Request
                                         </button>
                                     <?php endif; ?>
-                                </td>
-                                <td>
-                                   <a href="wishlist_add.php?book_id=<?php echo $book['id']; ?>" 
-                                     class="btn btn-sm btn-outline-danger">
-                                     Add to Wishlist
-                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
