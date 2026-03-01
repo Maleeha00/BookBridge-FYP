@@ -373,6 +373,11 @@ session_start();
   font-weight: 600;
 }
 
+.footer-heading
+{
+ padding-right: 70px;
+}
+
 
   </style>
 </head>
@@ -664,12 +669,23 @@ $result = $conn->query($sql);
       </div>
 
       <div class="footer-col-hrca footer-social-hrca">
-        <h4>Connect with Us</h4>
+        <h4 class="footer-heading"> Connect with Us</h4>
         <div class="social-icons-hrca">
-          <a href="#" class="social-icon-hrca facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon-hrca twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon-hrca youtube"><i class="fab fa-youtube"></i></a>
-        </div>
+  
+  <a href="https://www.facebook.com/" target="_blank" class="social-icon-hrca facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+ 
+  <a href="https://twitter.com/" target="_blank" class="social-icon-hrca twitter">
+    <i class="fab fa-twitter"></i>
+  </a>
+
+  
+  <a href="https://www.instagram.com/" target="_blank" class="social-icon-hrca instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
       </div>
     </div>
 
