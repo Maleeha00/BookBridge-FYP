@@ -28,9 +28,52 @@ $newsImage = (!empty($news['image']) && file_exists($news['image']))
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($news['title']) ?> | News</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="icon" type="image/png" href="uploads/assests/book.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <?php if ($news): ?>
 <body>
+   <nav class="auth-navbar">
+        <div class="container">
+            <a href="login.php" class="auth-logo">
+                <img src="/uploads/assests/book.png" alt="Library Logo" class="logo-image">
+                <span class="navbar-title">BookBridge</span>
+            </a>
+            <div class="nav-left-links">
+             <a href="index.php" class="auth-nav-link">
+             <i class="fas fa-home"></i>
+             <span>Home</span>
+             </a>
+             <a href="news.php" class="auth-nav-link">
+             <i class="fa-solid fa-newspaper"></i>
+             <span>News</span>
+             </a>
+             <a href="policy.php" class="auth-nav-link">
+             <i class="fas fa-envelope"></i>
+             <span>Policy</span>
+             </a>
+             </div>
+
+            <div class="auth-nav-links">
+                <a href="gallery.php" class="auth-nav-link">
+                    <i class="fas fa-images"></i>
+                    <span>Gallery</span>
+                </a>
+                <a href="about.php" class="auth-nav-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <a href="login.php" class="auth-nav-link">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Login</span>
+                </a>
+            </div>
+        </div>
+    </nav>
     <section class="container my-5">
 
   <h2 class="custom-heading">

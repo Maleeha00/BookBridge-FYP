@@ -1,247 +1,179 @@
 <?php
 include_once '../includes/header.php';
-// Total Issued
-$q1 = mysqli_query($conn, "SELECT COUNT(*) AS total FROM issued_books WHERE status='issued'");
-$issued = mysqli_fetch_assoc($q1)['total'];
 
-// Total Returned
-$q2 = mysqli_query($conn, "SELECT COUNT(*) AS total FROM issued_books WHERE status='returned'");
-$returned = mysqli_fetch_assoc($q2)['total'];
+// --- DATA PROCESSING ---
 
-// Total Overdue
-$q3 = mysqli_query($conn, "SELECT COUNT(*) AS total FROM issued_books WHERE status='overdue'");
-$overdue = mysqli_fetch_assoc($q3)['total'];
-
-// Total Books in Library
-$q4 = mysqli_query($conn, "SELECT COUNT(*) AS total FROM books");
-$totalBooks = mysqli_fetch_assoc($q4)['total'];
-
-$q5 = mysqli_query($conn, "
-    SELECT COUNT(DISTINCT user_id) AS total 
-    FROM issued_books
-");
-$activeUsers = mysqli_fetch_assoc($q5)['total'];
-
-$months = [];
-$issuedCounts = [];
-$returnCounts = [];
-
-$q6 = mysqli_query($conn, "
-    SELECT 
-        DATE_FORMAT(issue_date, '%b') AS month,
-        SUM(status='issued') AS iCount,
-        SUM(status='returned') AS rCount
-    FROM issued_books
-    GROUP BY MONTH(issue_date)
-    ORDER BY MONTH(issue_date)
-");
-
-while ($row = mysqli_fetch_assoc($q6)) {
+// 1. Monthly Trends (Activity Pulse)
+$months = []; $issuedTrends = []; $returnTrends = [];
+$qTrends = mysqli_query($conn, "SELECT DATE_FORMAT(issue_date, '%b') AS month, COUNT(*) AS iCount, SUM(status='returned') AS rCount FROM issued_books GROUP BY MONTH(issue_date) ORDER BY MONTH(issue_date) LIMIT 6");
+while ($row = mysqli_fetch_assoc($qTrends)) {
     $months[] = $row['month'];
-    $issuedCounts[] = $row['iCount'];
-    $returnCounts[] = $row['rCount'];
+    $issuedTrends[] = $row['iCount'];
+    $returnTrends[] = $row['rCount'];
 }
 
-$bookNames = [];
-$issueNumbers = [];
+// 2. Inventory Health (Status)
+$qStatus = mysqli_query($conn, "SELECT 
+    SUM(status='available') as avail, 
+    (SELECT COUNT(*) FROM issued_books WHERE status='issued') as issued,
+    (SELECT COUNT(*) FROM issued_books WHERE status='overdue') as overdue,
+    SUM(status='damaged' OR status='missing') as lost FROM issued_books");
+$s = mysqli_fetch_assoc($qStatus);
 
-$q7 = mysqli_query($conn, "
-    SELECT b.book_name, COUNT(i.book_id) AS timesIssued
-    FROM issued_books i
-    JOIN books b ON i.book_id = b.id
-    GROUP BY i.book_id
-    ORDER BY timesIssued DESC
-    LIMIT 5
-");
-
-while ($row = mysqli_fetch_assoc($q7)) {
-    $bookNames[] = $row['book_name'];
-    $issueNumbers[] = $row['timesIssued'];
+// 3. Leaderboard (Top 5 Books)
+$topLabels = []; $topValues = [];
+$qTop = mysqli_query($conn, "SELECT b.book_name, COUNT(i.id) as qty FROM issued_books i JOIN books b ON i.book_id=b.id GROUP BY i.book_id ORDER BY qty DESC LIMIT 5");
+while($r = mysqli_fetch_assoc($qTop)) {
+    $topLabels[] = (strlen($r['book_name']) > 12) ? substr($r['book_name'],0,10).'..' : $r['book_name'];
+    $topValues[] = $r['qty'];
 }
-
-$returnBookNames = [];
-$returnBookCounts = [];
-
-$q8 = mysqli_query($conn, "
-    SELECT b.book_name, COUNT(i.book_id) AS timesReturned
-    FROM issued_books i
-    JOIN books b ON i.book_id = b.id
-    WHERE i.status='returned'
-    GROUP BY i.book_id
-    ORDER BY timesReturned DESC
-    LIMIT 5
-");
-
-while ($row = mysqli_fetch_assoc($q8)) {
-    $returnBookNames[] = $row['book_name'];
-    $returnBookCounts[] = $row['timesReturned'];
-}
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Circulation Report</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
-        body {
-            font-family: Arial;
-            margin: 0;
-            background: #f1f4fb;
-        }
-        .container { padding: 20px 40px; }
-        h1 { margin-bottom: 10px; }
+        :root { --sidebar-width: 250px; --topbar-height: 60px; }
+        body { background: #f8f9fc; font-family: 'Segoe UI', sans-serif; margin: 0; }
 
-        /* Dashboard Cards */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .card {
-            background: white;
+        /* Fixes the gap and centers the dashboard */
+        .dashboard-wrapper {
+            margin-left: var(--sidebar-width);
             padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-        }
-        .number {
-            font-size: 42px;
-            font-weight: bold;
-            color: #2b4eff;
+            box-sizing: border-box;
         }
 
-        .chart-box {
-            margin-top: 40px;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-            width: 95%;
-        }
-
-        .charts-grid {
+        .chart-grid {
             display: grid;
-            grid-template-columns: 60% 35%;
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: 1.5fr 1fr; /* Main trend is larger */
+            grid-template-rows: auto auto;
+            gap: 20px;
         }
+
+        .chart-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e3e6f0;
+        }
+
+        .chart-card h3 {
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4e73df;
+            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+
+        .full-width { grid-column: span 2; }
+        
+        canvas { max-height: 250px !important; }
+        
+        .header-lite { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .header-lite h2 { margin: 0; font-weight: 300; color: #333; }
     </style>
 </head>
-
 <body>
 
-<div class="container">
-    <!--<h1>Circulation Report</h1>
-    <p>Dashboard overview of issue/return activity, active users, and book trends.</p>
-
-    <div class="cards">
-        <div class="card">
-            <h3>Total Issued</h3>
-            <div class="number"><?= $issued ?></div>
-        </div>
-
-        <div class="card">
-            <h3>Total Returned</h3>
-            <div class="number"><?= $returned ?></div>
-        </div>
-
-        <div class="card">
-            <h3>Overdue Books</h3>
-            <div class="number"><?= $overdue ?></div>
-        </div>
-
-        <div class="card">
-            <h3>Total Books</h3>
-            <div class="number"><?= $totalBooks ?></div>
-        </div>
-
-        <div class="card">
-            <h3>Active Users</h3>
-            <div class="number"><?= $activeUsers ?></div>
-        </div>
-    </div>-->
-
-
-    <div class="charts-grid">
-        <div class="chart-box">
-            <h2>Issued vs Returned (Month-wise)</h2>
-            <canvas id="lineChart"></canvas>
-        </div>
-
-        <div class="chart-box">
-            <h2>Top 5 Most Issued Books</h2>
-            <canvas id="pieChart"></canvas>
-        </div>
+<div class="dashboard-wrapper">
+    <div class="header-lite">
+        <h2>Library Insights</h2>
+        <span style="background:#e8edff; color:#2b4eff; padding:5px 12px; border-radius:20px; font-size:12px; font-weight:bold;">
+            Updated: <?= date("H:i A") ?>
+        </span>
     </div>
 
-    <div class="chart-box">
-        <h2>Top Returned Books</h2>
-        <canvas id="barChart"></canvas>
-    </div>
+    <div class="chart-grid">
+        <!-- 1. Activity Pulse -->
+        <div class="chart-card">
+            <h3>Borrowing Pulse (Trends)</h3>
+            <canvas id="pulseChart"></canvas>
+        </div>
 
+        <!-- 2. Inventory Health -->
+        <div class="chart-card">
+            <h3>Inventory Status</h3>
+            <canvas id="healthChart"></canvas>
+        </div>
+
+        <!-- 3. Leaderboard -->
+        <div class="chart-card full-width">
+            <h3>Top Performing Titles</h3>
+            <canvas id="leaderChart"></canvas>
+        </div>
+    </div>
 </div>
 
 <script>
-// ================== LINE CHART =================
-new Chart(document.getElementById('lineChart'), {
+// Chart 1: Pulse (Line Chart with Gradients)
+const ctxPulse = document.getElementById('pulseChart').getContext('2d');
+const gradient = ctxPulse.createLinearGradient(0, 0, 0, 400);
+gradient.addColorStop(0, 'rgba(78, 115, 223, 0.2)');
+gradient.addColorStop(1, 'rgba(78, 115, 223, 0)');
+
+new Chart(ctxPulse, {
     type: 'line',
     data: {
         labels: <?= json_encode($months) ?>,
-        datasets: [
-            {
-                label: 'Issued',
-                data: <?= json_encode($issuedCounts) ?>,
-                borderWidth: 3,
-            },
-            {
-                label: 'Returned',
-                data: <?= json_encode($returnCounts) ?>,
-                borderWidth: 3,
-            }
-        ]
-    }
+        datasets: [{
+            label: 'Issues',
+            data: <?= json_encode($issuedTrends) ?>,
+            borderColor: '#4e73df',
+            backgroundColor: gradient,
+            fill: true,
+            tension: 0.4,
+            borderWidth: 3
+        }, {
+            label: 'Returns',
+            data: <?= json_encode($returnTrends) ?>,
+            borderColor: '#1cc88a',
+            fill: false,
+            tension: 0.4,
+            borderDash: [5, 5]
+        }]
+    },
+    options: { plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: true, grid: { display: false } } } }
 });
 
-
-new Chart(document.getElementById('pieChart'), {
+// Chart 2: Health (Doughnut)
+new Chart(document.getElementById('healthChart'), {
     type: 'doughnut',
     data: {
-        labels: <?= json_encode($bookNames) ?>,
+        labels: ['Available', 'On Loan', 'Overdue', 'Lost/Dmg'],
         datasets: [{
-            data: <?= json_encode($issueNumbers) ?> 
+            data: [<?= (int)$s['avail'] ?>, <?= (int)$s['issued'] ?>, <?= (int)$s['overdue'] ?>, <?= (int)$s['lost'] ?>],
+            backgroundColor: ['#1cc88a', '#4e73df', '#f6c23e', '#e74a3b'],
+            hoverOffset: 10,
+            borderWidth: 0
         }]
-    }
+    },
+    options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } } }
 });
 
-// ================== BAR CHART (TOP RETURNED BOOKS) =================
-new Chart(document.getElementById('barChart'), {
+// Chart 3: Leaderboard (Horizontal Bar)
+new Chart(document.getElementById('leaderChart'), {
     type: 'bar',
     data: {
-        labels: <?= json_encode($returnBookNames) ?>,
+        labels: <?= json_encode($topLabels) ?>,
         datasets: [{
-            label: 'Times Returned',
-            data: <?= json_encode($returnBookCounts) ?>,
-            borderWidth: 2
+            label: 'Total Loans',
+            data: <?= json_encode($topValues) ?>,
+            backgroundColor: '#4e73df',
+            borderRadius: 5,
+            barThickness: 25
         }]
+    },
+    options: {
+        indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: { x: { grid: { display: false } }, y: { grid: { display: false } } }
     }
 });
 </script>
-<a href="circulation_details.php">
-    <button style="
-        padding: 10px 18px;
-        background: #ffd82bff;
-        color: black;
-        border: none;
-        margin-right: 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        float: right;
-    ">
-        View Details
-    </button>
-</a>
 
 </body>
 </html>

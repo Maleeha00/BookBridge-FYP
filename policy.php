@@ -70,11 +70,10 @@
     {
       text-align:center;
     }
-  </style>
+  </style> 
 </head>
 
 <body>
-
   <div class="rules-header">
     <h1>📜 Library Rules & Regulations</h1>
   </div>
