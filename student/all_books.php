@@ -222,6 +222,10 @@ while ($row = $result->fetch_assoc()) {
             color: white;
             transform: translateY(-2px);
         }
+        .navbar-book_name {
+            font-size: 1.6em;
+            font-weight: bold;
+        }
 
         .dashboard-btn,
 .logout-btn {
