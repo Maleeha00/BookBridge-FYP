@@ -533,9 +533,9 @@ $sql = "SELECT
             type,
             cover_image,
             file_path
-        FROM ebooks
+        FROM ebooks 
         ORDER BY created_at DESC
-        LIMIT 30";
+        LIMIT 12";
 
 
 $result = $conn->query($sql);
@@ -564,8 +564,8 @@ $result = $conn->query($sql);
   <?= htmlspecialchars($ebook['category']) ?>
 </p>     
  <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
-             class="btn btn-primary btn-sm"
-             view>
+ class="btn btn-primary btn-sm"
+ target="_blank">
             View
           </a>
           <a href="<?php echo htmlspecialchars($ebook['file_path']); ?>"
@@ -589,7 +589,7 @@ $result = $conn->query($sql);
   </div>
 
   <div class="text-center mt-3">
-    <a href="student/ebooks.php" class="btn btn-outline-primary">
+    <a href="demo.php" class="btn btn-outline-primary">
       View Full Library
     </a>
   </div>
