@@ -37,7 +37,6 @@ while($r = mysqli_fetch_assoc($qTop)) {
         :root { --sidebar-width: 250px; --topbar-height: 60px; }
         body { background: #f8f9fc; font-family: 'Segoe UI', sans-serif; margin: 0; }
 
-        /* Fixes the gap and centers the dashboard */
         .dashboard-wrapper {
             margin-left: var(--sidebar-width);
             padding: 25px;
@@ -46,7 +45,7 @@ while($r = mysqli_fetch_assoc($qTop)) {
 
         .chart-grid {
             display: grid;
-            grid-template-columns: 1.5fr 1fr; /* Main trend is larger */
+            grid-template-columns: 1.5fr 1fr;
             grid-template-rows: auto auto;
             gap: 20px;
         }
@@ -75,6 +74,34 @@ while($r = mysqli_fetch_assoc($qTop)) {
         
         .header-lite { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         .header-lite h2 { margin: 0; font-weight: 300; color: #333; }
+
+        /* --- NEW BUTTON STYLE --- */
+        .btn-report {
+            background: #4e73df;
+            color: white !important;
+            padding: 8px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(78, 115, 223, 0.2);
+        }
+
+        .btn-report:hover {
+            background: #2e59d9;
+            box-shadow: 0 6px 12px rgba(78, 115, 223, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
     </style>
 </head>
 <body>
@@ -82,9 +109,16 @@ while($r = mysqli_fetch_assoc($qTop)) {
 <div class="dashboard-wrapper">
     <div class="header-lite">
         <h2>Library Insights</h2>
-        <span style="background:#e8edff; color:#2b4eff; padding:5px 12px; border-radius:20px; font-size:12px; font-weight:bold;">
-            Updated: <?= date("H:i A") ?>
-        </span>
+        <div class="header-actions">
+            <!-- NEW VIEW REPORT BUTTON -->
+            <a href="circulation_details.php" class="btn-report">
+                View Report
+            </a>
+            
+            <span style="background:#e8edff; color:#2b4eff; padding:8px 12px; border-radius:8px; font-size:12px; font-weight:bold;">
+                Updated: <?= date("H:i A") ?>
+            </span>
+        </div>
     </div>
 
     <div class="chart-grid">
@@ -109,7 +143,7 @@ while($r = mysqli_fetch_assoc($qTop)) {
 </div>
 
 <script>
-// Chart 1: Pulse (Line Chart with Gradients)
+// Chart 1: Pulse (Line Chart)
 const ctxPulse = document.getElementById('pulseChart').getContext('2d');
 const gradient = ctxPulse.createLinearGradient(0, 0, 0, 400);
 gradient.addColorStop(0, 'rgba(78, 115, 223, 0.2)');

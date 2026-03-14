@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $insert = "INSERT INTO reviews_and_ratings (book_id, user_id, rating, review, reviewed_at)                     
                    VALUES ($book_id, $user_id, $rating, '$review', NOW())";                   
         if (mysqli_query($conn, $insert)) {                          
-            $message = "<div class='alert alert-success border-0 shadow-sm'>✨ Thank you! Your review has been submitted.</div>";                  
+            $message = "<div class='alert alert-success border-0 shadow-sm'> Thank you! Your review has been submitted.</div>";                  
         } else {                          
             $message = "<div class='alert alert-danger border-0 shadow-sm'>Error submitting review.</div>";                  
         }          
@@ -32,11 +32,12 @@ $book = mysqli_fetch_assoc($result);
 $rec_query = "SELECT id, title, cover_image FROM ebooks WHERE id != $book_id ORDER BY RAND() LIMIT 4";  
 $rec_result = mysqli_query($conn, $rec_query);   
 
-$review_query = "SELECT r.rating, r.review, r.reviewed_at
-                 FROM reviews_and_ratings r                   
-                 JOIN users u ON r.user_id = u.id                   
-                 WHERE r.book_id = $book_id                   
-                 ORDER BY r.reviewed_at DESC";   
+$review_query = "
+SELECT r.rating, r.review, r.reviewed_at, u.name
+FROM reviews_and_ratings r
+JOIN users u ON r.user_id = u.id
+WHERE r.book_id = $book_id
+";  
 $review_result = mysqli_query($conn, $review_query);    
 
 $avg_query = "SELECT AVG(rating) AS avg_rating, COUNT(*) AS total_reviews                
@@ -261,7 +262,7 @@ $avg_data = mysqli_fetch_assoc($avg_result);
 
                             <div class="mb-4">
                                 <label class="form-label fw-600">Share your experience</label>
-                                <textarea name="review" rows="5" class="form-control" placeholder="What did you think about the story?" required></textarea>
+                                <textarea name="review" rows="5" class="form-control" placeholder="What did you think about the book?" required></textarea>
                             </div>
 
                             <button type="submit" class="submit-btn shadow-sm">Submit Review</button>

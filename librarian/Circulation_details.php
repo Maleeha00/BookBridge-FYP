@@ -1,7 +1,7 @@
 <?php 
 include_once '../includes/header.php'; 
 
-// --- DATABASE QUERIES ---
+// --- DATABASE QUERIES (KEPT EXACTLY AS PER YOUR CODE) ---
 
 // 1. Executive Metrics
 $q1 = mysqli_query($conn, "SELECT COUNT(*) AS total FROM issued_books WHERE status='issued'");
@@ -15,7 +15,6 @@ $overdue = mysqli_fetch_assoc($q3)['total'] ?? 0;
 
 // 2. User Activity
 $userNames = []; $userCounts = [];
-// Fixed: Using u.name as per common table structures, adjusted to match your array variable
 $qUsers = mysqli_query($conn, "SELECT u.name, COUNT(i.id) as qty FROM issued_books i JOIN users u ON i.user_id=u.id GROUP BY i.user_id ORDER BY qty DESC LIMIT 5");
 while($r = mysqli_fetch_assoc($qUsers)){ 
     $userNames[] = $r['name']; 
@@ -34,7 +33,7 @@ while ($row = mysqli_fetch_assoc($qTrends)) {
     $returnTrends[] = $row['returnedCount'];
 }
 
-// 4. Book Status Summary (From 'books' table)
+// 4. Book Status Summary
 $qStatus = mysqli_query($conn, "SELECT 
     SUM(status='available') as avail, 
     SUM(status='damaged') as dmg, 
@@ -56,10 +55,15 @@ while($r = mysqli_fetch_assoc($qMost)){ $mostBorrowedNames[] = $r['book_name']; 
     <meta charset="UTF-8">
     <title>Library Circulation Report - <?= date("Y-m-d") ?></title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ADDED: PDF LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
+        
+    </script>
+    
     <style>
         :root { --primary: #1a237e; --secondary: #303f9f; --light: #f5f5f5; --dark: #212121; }
         
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #e0e0e0; margin: 0; padding: 0px 0; color: var(--dark); }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #e0e0e0; margin: 0; padding: 20px 0; color: var(--dark); }
         
         /* Report Sheet Layout */
         .report-page { 
@@ -84,6 +88,31 @@ while($r = mysqli_fetch_assoc($qMost)){ $mostBorrowedNames[] = $r['book_name']; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.2); z-index: 1000;
         }
 
+        /* ADDED: BOTTOM DOWNLOAD BUTTON STYLE */
+        .download-footer-container {
+            width: 210mm;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .download-btn-bottom {
+            padding: 15px 35px;
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .download-btn-bottom:hover {
+            background-color: #0d144d;
+            transform: translateY(-2px);
+        }
+
         /* Executive Summary Box */
         .summary-box { background: var(--light); padding: 15px; border-left: 5px solid var(--primary); margin-bottom: 30px; line-height: 1.6; }
 
@@ -104,7 +133,7 @@ while($r = mysqli_fetch_assoc($qMost)){ $mostBorrowedNames[] = $r['book_name']; 
         @media print {
             body { background: white; padding: 0; }
             .report-page { box-shadow: none; width: 100%; margin: 0; padding: 10mm; }
-            .no-print-btn { display: none; }
+            .no-print-btn, .download-footer-container { display: none; }
             .chart-container { page-break-inside: avoid; }
         }
     </style>
@@ -113,7 +142,8 @@ while($r = mysqli_fetch_assoc($qMost)){ $mostBorrowedNames[] = $r['book_name']; 
 
 <button class="no-print-btn" onclick="window.print()">Print / Save as PDF</button>
 
-<div class="report-page">
+<!-- ID 'report-content' added to target this specific area for PDF download -->
+<div class="report-page" id="report-content">
     <div class="report-header">
         <div>
             <h1>Library Analytics</h1>
@@ -140,25 +170,21 @@ while($r = mysqli_fetch_assoc($qMost)){ $mostBorrowedNames[] = $r['book_name']; 
     </div>
 
     <div class="charts-grid">
-        <!-- Trend -->
         <div class="chart-container">
             <h3>Borrowing & Return Trends</h3>
             <canvas id="trendChart" height="200"></canvas>
         </div>
 
-        <!-- Inventory -->
         <div class="chart-container">
             <h3>Inventory Status Summary</h3>
             <canvas id="statusChart" height="200"></canvas>
         </div>
 
-        <!-- Top Books -->
         <div class="chart-container">
             <h3>Most Borrowed Titles</h3>
             <canvas id="mostBorrowedChart" height="200"></canvas>
         </div>
 
-        <!-- Top Users -->
         <div class="chart-container">
             <h3>Most Active Members</h3>
             <canvas id="userChart" height="200"></canvas>
@@ -171,12 +197,19 @@ while($r = mysqli_fetch_assoc($qMost)){ $mostBorrowedNames[] = $r['book_name']; 
     </div>
 </div>
 
+<!-- ADDED: NEW DOWNLOAD BUTTON AT THE BOTTOM -->
+<div class="download-footer-container">
+    <button class="download-btn-bottom" id="download-pdf-btn">Download Full Report (PDF)</button>
+    <p style="color: #666; font-size: 13px; margin-top: 10px;">Click the button above to save the analytics as a high-quality PDF.</p>
+</div>
+
 <script>
-// Chart Settings
+// --- CHART SETTINGS ---
+// IMPORTANT: animation: false is required for accurate PDF capturing
 Chart.defaults.font.size = 11;
 Chart.defaults.font.family = "'Segoe UI', sans-serif";
+Chart.defaults.animation = false; // Globally disable animations for PDF accuracy
 
-// 1. Trend Chart
 new Chart(document.getElementById('trendChart'), {
     type: 'line',
     data: {
@@ -186,10 +219,9 @@ new Chart(document.getElementById('trendChart'), {
             { label: 'Returned', data: <?= json_encode($returnTrends) ?>, borderColor: '#28a745', backgroundColor: '#28a745', fill: false, tension: 0.3 }
         ]
     },
-    options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom' } } }
 });
 
-// 2. Inventory Status
 new Chart(document.getElementById('statusChart'), {
     type: 'doughnut',
     data: {
@@ -200,27 +232,59 @@ new Chart(document.getElementById('statusChart'), {
             borderWidth: 0
         }]
     },
-    options: { responsive: true, plugins: { legend: { position: 'right' } } }
+    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'right' } } }
 });
 
-// 3. Most Borrowed
 new Chart(document.getElementById('mostBorrowedChart'), {
     type: 'bar',
     data: {
         labels: <?= json_encode($mostBorrowedNames) ?>,
         datasets: [{ label: 'Loans', data: <?= json_encode($mostBorrowedCounts) ?>, backgroundColor: '#303f9f' }]
     },
-    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } } }
 });
 
-// 4. User Activity
 new Chart(document.getElementById('userChart'), {
     type: 'bar',
     data: {
         labels: <?= json_encode($userNames) ?>,
         datasets: [{ label: 'Books Borrowed', data: <?= json_encode($userCounts) ?>, backgroundColor: '#5c6bc0' }]
     },
-    options: { plugins: { legend: { display: false } } }
+    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } } }
+});
+
+// --- IMPROVED PDF DOWNLOAD LOGIC ---
+document.getElementById('download-pdf-btn').addEventListener('click', function () {
+    const btn = this;
+    const element = document.getElementById('report-content');
+    
+    // Change button text to show progress
+    btn.innerHTML = "Generating PDF... Please wait";
+    btn.style.backgroundColor = "#666";
+
+    // Options to ensure high accuracy
+    const opt = {
+        margin:       [10, 10, 10, 10], // top, left, bottom, right in mm
+        filename:     'Library_Report_<?= date("Y-m-d") ?>.pdf',
+        image:        { type: 'jpeg', quality: 1.0 }, // Maximum quality
+        html2canvas:  { 
+            scale: 2, 
+            useCORS: true, 
+            logging: false, 
+            letterRendering: true,
+            windowWidth: 1200 // Forces the 'camera' to see the wide layout
+        },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Use a small timeout to ensure the DOM has finished all painting
+    setTimeout(() => {
+        html2pdf().set(opt).from(element).save().then(() => {
+            // Reset button after download
+            btn.innerHTML = "Download Full Report (PDF)";
+            btn.style.backgroundColor = "#1a237e";
+        });
+    }, 500); 
 });
 </script>
 
