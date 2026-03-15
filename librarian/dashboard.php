@@ -601,9 +601,9 @@ if ($result) {
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    text-shadow: 1px 1px 3px rgba(5, 6, 66, 0.7);
+    text-shadow: 1px 1px 3px rgba(1, 1, 1, 0.7);
     font-weight: bold;
-    box-shadow: 0 0 10px rgba(4, 1, 32, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.94);
     padding: 10px;
     text-align: top;
 }
