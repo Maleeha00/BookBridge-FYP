@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2026 at 04:37 PM
+-- Generation Time: Mar 17, 2026 at 12:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -972,7 +972,8 @@ CREATE TABLE `reviews_and_ratings` (
   `rating` int(11) NOT NULL,
   `review` text DEFAULT NULL,
   `reviewed_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `reviewer_name` varchar(100) NOT NULL DEFAULT 'Anonymous'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
