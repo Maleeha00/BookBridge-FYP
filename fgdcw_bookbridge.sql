@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2026 at 08:06 AM
+-- Generation Time: Mar 14, 2026 at 04:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -422,7 +422,7 @@ INSERT INTO `books` (`id`, `book_name`, `author`, `book_no`, `publisher`, `categ
 (527, 'Selected essays', 'Muhammad Masood', '3239', 'Azhar publishers, Urdu bazar, Lahore', 'English', 2, 2, '2025-06-16 19:55:38', '2025-06-16 19:55:38'),
 (528, 'Latest essays', NULL, '3240', 'Dogar publishers, Urdu bazar, Lahore', 'English', 2, 2, '2025-06-16 19:55:38', '2025-06-16 19:55:38'),
 (529, 'Selected poems', 'Milton, Wordsworth, Keats Browning, Robert Frost', '655-SF', 'New kitab mahal publishers', 'English', 2, 2, '2025-06-16 19:55:38', '2025-06-16 19:55:38'),
-(530, 'A comprehensive study of the articles: A, An & The', 'Shahid Sarwar Kazi', '538-SF', 'Zujaj publishers, Garhi ahmad abad, Gujrat, Pakistan', 'English', 1, 2, '2025-06-16 19:55:38', '2025-11-28 15:31:59'),
+(530, 'A comprehensive study of the articles: A, An & The', 'Shahid Sarwar Kazi', '538-SF', 'Zujaj publishers, Garhi ahmad abad, Gujrat, Pakistan', 'English', 1, 2, '2025-06-16 19:55:38', '2026-03-08 08:19:20'),
 (531, 'Formal semantics and logic', 'Bas C. van Fraassen', '40-D', 'The Macmillan company, New York', 'English', 2, 2, '2025-06-16 19:55:38', '2025-06-16 19:55:38'),
 (532, 'Treasury of proverbs and epigrams', NULL, '163-D', 'Avenel books, New York', 'English', 2, 2, '2025-06-16 19:55:38', '2025-06-16 19:55:38'),
 (533, 'Invention & Design a rhetorical reader', 'Forrest D. Burt, E. Cleve Want', '51-D', 'Random house, New York', 'English', 2, 2, '2025-06-16 19:55:38', '2025-06-16 19:55:38'),
@@ -657,7 +657,13 @@ INSERT INTO `ebooks` (`id`, `title`, `author`, `category`, `file_path`, `file_si
 (262, 'INTRODUCTION TO ALGORITHMS', 'THOMAS H.  CHARLES E.       RONALD L.  CORMEN LEISERSON RIVEST CLIFFORD STEIN', 'BS IT-3', '../uploads/ebooks/6991fdc2cc22c_Intro to algo 3rd Edition.pdf', '5.54 MB', 'pdf', '', 35, '2026-02-15 17:09:22', '../uploads/ebook_covers/6991fdc2cbf77.jpeg', 'ebooks'),
 (263, 'javascript book', 'Jeremy McPeak  Paul Wilton', 'BS IT-7', '../uploads/ebooks/69920533b4909_Javascript Book.pdf', '15.43 MB', 'pdf', '', 35, '2026-02-15 17:41:07', '../uploads/ebook_covers/69920533b44c8.jpeg', 'ebooks'),
 (264, 'Introduction to the Design and Analysis of Algorithms', 'Anany Levitin', 'BS IT-4', '../uploads/ebooks/6992063a3feeb_Introduction to the Design and Analysis of Algorithms (3rd ed.) [Levitin 2011-10-09].pdf', '9.03 MB', 'pdf', '', 35, '2026-02-15 17:45:30', '../uploads/ebook_covers/6992063a3f349.jpeg', 'ebooks'),
-(265, 'SIMULATION MODELING  &  ANALYSIS', 'Averill M. LAw W David Kelton', 'BS IT-5', '../uploads/ebooks/69a08460dbc2f_LIBRO_SIMULATION_MODELING_ANALYSIS.pdf', '10.54 MB', 'pdf', '', 35, '2026-02-26 17:35:28', '../uploads/ebook_covers/69a08460db0ef.jpeg', 'ebooks');
+(265, 'SIMULATION MODELING  &  ANALYSIS', 'Averill M. LAw W David Kelton', 'BS IT-5', '../uploads/ebooks/69a08460dbc2f_LIBRO_SIMULATION_MODELING_ANALYSIS.pdf', '10.54 MB', 'pdf', '', 35, '2026-02-26 17:35:28', '../uploads/ebook_covers/69a08460db0ef.jpeg', 'ebooks'),
+(267, 'Common Sentence Errors', 'APU Writing Center', 'BS IT-1', '../uploads/ebooks/69b4a9e08abc5_common_sentence_errors.pdf', '322.73 KB', 'pdf', '', 35, '2026-03-14 00:20:48', '../uploads/ebook_covers/69b4a9e089dd6.jpeg', 'ebooks'),
+(268, 'تفہیم اسلامیات (اسلام کا سیاسی نظام)', 'Prof. Dr. Muhammad Nawaz Chaudhary.', 'BS IT-1', '../uploads/ebooks/69b4ad24b471b_اسلام کا سیاسی نظام.pdf', '8.35 MB', 'pdf', '', 35, '2026-03-14 00:34:44', '../uploads/ebook_covers/69b4ad24b3ceb.jpeg', 'ebooks'),
+(269, 'تفہیم اسلامیات (اسلام کا معاشرتی نظام)', 'Prof. Dr. Muhammad Nawaz Chaudhary.', 'BS IT-1', '../uploads/ebooks/69b4adf78a0ce_اسلام کا معاشرتی نظام.pdf', '6.73 MB', 'pdf', '', 35, '2026-03-14 00:38:15', '../uploads/ebook_covers/69b4adf789637.jpeg', 'ebooks'),
+(270, 'تفہیم اسلامیات (اسلام کا نظامِ معیشت)', 'By Prof. Dr. Muhammad Nawaz Chaudhary.', 'BS IT-1', '../uploads/ebooks/69b575b19199d_اسلام کا نظامِ معیشت.pdf', '14.88 MB', 'pdf', '', 35, '2026-03-14 14:50:25', '../uploads/ebook_covers/69b575b190cdb.jpeg', 'ebooks'),
+(271, 'تفہیم اسلامیات (اسلامی قانون)', 'Prof. Dr. Muhammad Nawaz Chaudhary.', 'BS IT-1', '../uploads/ebooks/69b5763374993_اسلامی قانون.pdf', '11.74 MB', 'pdf', '', 35, '2026-03-14 14:52:35', '../uploads/ebook_covers/69b5763374160.jpeg', 'ebooks'),
+(272, 'Fundamentals of Physics [10th Edition]', 'Halliday & Resnick', 'BS IT-1', '../uploads/ebooks/69b579c89dacc_Fundamentals of Physics [10th Edition] - Halliday & Resnick.pdf', '33.04 MB', 'pdf', '', 35, '2026-03-14 15:07:52', '../uploads/ebook_covers/69b579c89d15d.jpeg', 'ebooks');
 
 -- --------------------------------------------------------
 
@@ -689,14 +695,6 @@ CREATE TABLE `fines` (
   `status` enum('pending','paid') NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `fines`
---
-
-INSERT INTO `fines` (`id`, `issued_book_id`, `user_id`, `amount`, `reason`, `status`, `created_at`) VALUES
-(70, 116, 41, 6500.00, 'Late return of book \"30 days to a more powerful vocabulary\"', 'paid', '2025-11-17 14:10:18'),
-(71, 118, 41, 6500.00, 'Late return of book \"101 Games for trainers\"', 'paid', '2025-11-17 14:10:18');
 
 -- --------------------------------------------------------
 
@@ -746,12 +744,7 @@ CREATE TABLE `issued_books` (
 --
 
 INSERT INTO `issued_books` (`id`, `book_id`, `user_id`, `issue_date`, `return_date`, `actual_return_date`, `status`, `fine_amount`) VALUES
-(93, 220, 41, '2025-08-19 20:24:50', '2025-08-27', '2025-08-19', 'returned', 0.00),
-(103, 220, 41, '2025-08-19 09:29:49', '2025-09-02', '2025-08-19', 'returned', 0.00),
-(116, 489, 41, '2025-08-29 19:58:40', '2025-09-13', NULL, 'overdue', 7600.00),
-(117, 558, 41, '2025-08-29 19:58:42', '2025-09-13', '2025-09-01', 'returned', 0.00),
-(118, 300, 41, '2025-08-29 19:58:44', '2025-09-13', NULL, 'overdue', 7600.00),
-(119, 530, 41, '2025-11-28 15:31:59', '2025-12-12', NULL, 'overdue', 200.00);
+(120, 530, 97, '2026-03-08 08:14:10', '2026-03-08', '2026-03-08', 'returned', 0.00);
 
 -- --------------------------------------------------------
 
@@ -772,8 +765,12 @@ CREATE TABLE `login_attempts` (
 --
 
 INSERT INTO `login_attempts` (`id`, `identifier`, `ip_address`, `attempt_time`, `success`) VALUES
-(526, 'iqranoureench@gmail.com', '::1', '2026-03-01 03:31:07', 1),
-(527, 'iqranoureench@gmail.com', '::1', '2026-03-01 03:47:18', 1);
+(541, 'iqranoureench@gmail.com', '::1', '2026-03-14 14:12:09', 1),
+(542, 'maleehamushtaq1008@gmail.com', '::1', '2026-03-14 14:14:21', 1),
+(543, 'maleehamushtaq100@gmail.com', '::1', '2026-03-14 14:14:59', 0),
+(544, 'maleehamushtaq1008@gmail.com', '::1', '2026-03-14 14:15:04', 1),
+(545, 'iqranoureench@gmail.com', '::1', '2026-03-14 14:39:46', 1),
+(546, 'iqranoureench@gmail.com', '::1', '2026-03-14 15:03:31', 1);
 
 -- --------------------------------------------------------
 
@@ -864,7 +861,10 @@ INSERT INTO `notifications` (`id`, `user_id`, `message`, `is_read`, `created_at`
 (395, 41, 'Your approved request for \'Key to Vector Analysis\' has expired because you didn\'t collect it within 2 days. Please submit a new request if you still need the book.', 0, '2025-12-14 05:37:15'),
 (396, 41, 'Your borrowed book \'A comprehensive study of the articles: A, An & The\' is overdue. Please return it as soon as possible.', 0, '2025-12-14 05:37:15'),
 (397, 41, 'Your reservation for \'101 Games for trainers\' has expired. You can create a new reservation if the book is still unavailable.', 0, '2025-12-27 10:42:56'),
-(398, 41, 'Your reservation for \'101 Games for trainers\' has expired. You can create a new reservation if the book is still unavailable.', 0, '2025-12-27 10:42:56');
+(398, 41, 'Your reservation for \'101 Games for trainers\' has expired. You can create a new reservation if the book is still unavailable.', 0, '2025-12-27 10:42:56'),
+(399, 97, 'Your request for \'A comprehensive study of the articles: A, An & The\' has been approved. Please collect it within 2 days.', 0, '2026-03-08 08:14:08'),
+(400, 97, 'Please collect your approved book \'A comprehensive study of the articles: A, An & The\'. It has now been issued to you. Due date: March 22, 2026.', 0, '2026-03-08 08:14:10'),
+(401, 97, 'Your book \'A comprehensive study of the articles: A, An & The\' has been returned successfully.', 0, '2026-03-08 08:19:20');
 
 -- --------------------------------------------------------
 
@@ -907,14 +907,6 @@ CREATE TABLE `payments` (
   `payment_details` text DEFAULT NULL,
   `payment_status` varchar(50) NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `fine_id`, `user_id`, `amount`, `payment_date`, `payment_method`, `receipt_number`, `transaction_id`, `payment_details`, `payment_status`) VALUES
-(53, 70, 41, 6500.00, '2025-11-28 15:23:26', 'cash', '', NULL, NULL, 'Pending'),
-(54, 71, 41, 6500.00, '2025-11-28 15:23:30', 'cash', '', NULL, NULL, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -964,7 +956,24 @@ INSERT INTO `reservation_requests` (`id`, `book_id`, `user_id`, `request_date`, 
 (95, 530, 41, '2025-11-28 15:30:54', 'approved', '', 1, '2025-11-30 20:31:51', '2025-11-28 20:31:51', '2025-11-28 20:31:59'),
 (96, 220, 41, '2025-11-28 15:33:40', '', '', 0, '2025-11-30 20:34:14', '2025-11-28 20:34:14', NULL),
 (97, 645, 41, '2025-11-28 16:58:42', '', '', 0, '2025-11-30 21:59:14', '2025-11-28 21:59:14', NULL),
-(98, 192, 41, '2025-11-30 06:27:38', '', '', 0, '2025-12-02 11:29:09', '2025-11-30 11:29:09', NULL);
+(98, 192, 41, '2025-11-30 06:27:38', '', '', 0, '2025-12-02 11:29:09', '2025-11-30 11:29:09', NULL),
+(99, 530, 97, '2026-03-08 08:13:35', 'approved', '', 1, '2026-03-10 13:14:08', '2026-03-08 13:14:08', '2026-03-08 13:14:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews_and_ratings`
+--
+
+CREATE TABLE `reviews_and_ratings` (
+  `id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `review` text DEFAULT NULL,
+  `reviewed_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -999,7 +1008,8 @@ INSERT INTO `users` (`id`, `unique_id`, `name`, `email`, `password`, `role`, `cl
 (41, 'STU70547', 'Maleeha Mushtaq', 'maleehamushtaq1008@gmail.com', '$2y$10$VIniCetNz5e/OultgbM01ecreeY90ucoVw9Qz9DZgweFdeKG0XK9i', 'student', 'BS IT-8', '03466855225', NULL, '2025-08-17 22:55:36', 'approved', NULL, NULL, 0, NULL),
 (80, 'STU11370', 'Iqra Noureen', 'iqrachaudhry34@gmail.com', '$2y$10$kcgeGiiUxQcl9WrevetDKOsZ88nsrttiDY.bUU.x54T25GRfPTuyu', 'student', 'BS IT-2', '03456893624', NULL, '2025-08-23 15:07:23', 'approved', '2025-08-23 15:08:02', NULL, 1, NULL),
 (90, 'STU82156', 'Iqra Noureen', 'iqrachaudhry374@gmail.com', '$2y$10$6CFBO3E9r9ZCYpDJVYlx3.Jv7b0DiWbGAuRXda4dVcrhkgIhCfa3S', 'student', 'BS ENG-5', '03095810285', NULL, '2025-08-30 19:38:05', 'approved', '2025-08-30 19:38:56', NULL, 0, '271a3e820f03d612cc2f4d8565b6ebf5'),
-(96, 'STU81162', 'Aqsa Hakeem', 'aqsahakeem978@gmail.com', '$2y$10$dixddIS2pDv4NCxg4W39OONNX4tyfFEadq68omHLDQ6XoO.ICIvE2', 'student', 'BS IT-8', '03430789106', NULL, '2025-11-28 17:18:02', 'rejected', NULL, '2025-11-28 17:19:50', 0, NULL);
+(96, 'STU81162', 'Aqsa Hakeem', 'aqsahakeem978@gmail.com', '$2y$10$dixddIS2pDv4NCxg4W39OONNX4tyfFEadq68omHLDQ6XoO.ICIvE2', 'student', 'BS IT-8', '03430789106', NULL, '2025-11-28 17:18:02', 'rejected', NULL, '2025-11-28 17:19:50', 0, NULL),
+(97, 'STU42309', 'Maleeha Mushtaq', 'isbahkhawar2408@gmail.com', '$2y$10$KFRotYXh08wM/PPTcEFOcu/LxEGhOJ0OvzSfAt.h98qkH24z0t1I2', 'student', 'BS IT-8', '', NULL, '2026-03-08 08:05:46', 'approved', '2026-03-08 08:05:59', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1132,6 +1142,12 @@ ALTER TABLE `reservation_requests`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `reviews_and_ratings`
+--
+ALTER TABLE `reviews_and_ratings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1166,7 +1182,7 @@ ALTER TABLE `book_requests`
 -- AUTO_INCREMENT for table `ebooks`
 --
 ALTER TABLE `ebooks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -1190,13 +1206,13 @@ ALTER TABLE `fulfilled_bookrequests`
 -- AUTO_INCREMENT for table `issued_books`
 --
 ALTER TABLE `issued_books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=528;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=547;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -1208,7 +1224,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=399;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=402;
 
 --
 -- AUTO_INCREMENT for table `password_resets`
@@ -1232,13 +1248,19 @@ ALTER TABLE `reading_logs`
 -- AUTO_INCREMENT for table `reservation_requests`
 --
 ALTER TABLE `reservation_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+
+--
+-- AUTO_INCREMENT for table `reviews_and_ratings`
+--
+ALTER TABLE `reviews_and_ratings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `weed_off_books`
